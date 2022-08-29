@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MEven44/API-project.git"
+    "url": "git+https://github.com/MEven44/SoundCloud-API-project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MEven44/API-project/issues"
+    "url": "https://github.com/MEven44/SoundCloud-API-project/issues"
   },
-  "homepage": "https://github.com/MEven44/API-project#readme"
+  "homepage": "https://github.com/MEven44/SoundCloud-API-project#readme"
 }
