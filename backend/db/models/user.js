@@ -1,6 +1,7 @@
 "use strict";
 const { Model, Validator } = require("sequelize");
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const playlist = require("./playlist");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
@@ -43,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
       // define association here
+      User.hasMany(Song, {foreignKey: userId})
+      User.hasMany(Album, {foreignKey: userId})
+      User.hasMany(playlist, {foreignKey: userId})
+      User.hasMany(Comment, {foreignKey: userId})
     }
   }
   User.init(
