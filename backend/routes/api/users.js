@@ -37,4 +37,20 @@ router.post(
   }
 );
 
+//Get all Songs of an Artist from an id
+
+router.get("/:userId/songs", async (req, res,next) => {
+  let userId = req.params.id;
+  if (id) {
+      let songById = await Song.findAll({
+        where: { userId: id },
+      });
+      res.json(songById);
+  } else {
+    const err = new Error("Artist couldn't be found");
+    err.statusCode = 404;
+    next(err);
+  }
+});
+
 module.exports = router;
