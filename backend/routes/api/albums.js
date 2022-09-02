@@ -11,7 +11,7 @@ const {
 } = require("../../db/models");
 
 router.get("/", async (req, res) => {
-  let allAlbums = await Song.findAll();
+  let allAlbums = await Album.findAll();
   res.json({Albums: allAlbums});
 });
 
