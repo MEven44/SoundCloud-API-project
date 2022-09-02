@@ -10,9 +10,19 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onDelete: 'cascade'
       },
       songId: {
         type: Sequelize.STRING,
+        references: {
+          model: 'Songs',
+          key: 'id'
+        },
+        onDelete:'cascade'
       },
       body: {
         type: Sequelize.STRING,

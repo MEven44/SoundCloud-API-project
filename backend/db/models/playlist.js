@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
     },
+    previewImage: {
+      type:DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Playlist',

@@ -1,4 +1,7 @@
 'use strict';
+
+const playlist = require("../models/playlist");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("PlaylistSongs", {
@@ -10,9 +13,18 @@ module.exports = {
       },
       songId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Songs',
+          key: 'id'
+        }
       },
       playlistId: {
         type: Sequelize.INTEGER,
+        references: {
+          model:'Playlists',
+          key: 'id'
+        },
+        onDelete:'cascade'
       },
       order: {
         type: Sequelize.INTEGER,

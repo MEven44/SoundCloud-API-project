@@ -10,9 +10,15 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key:'id'
+        },
+        onDelete: 'cascade'
       },
       title: {
         type: Sequelize.STRING,
+        unique: true
       },
       description: {
         type: Sequelize.STRING,
