@@ -42,6 +42,8 @@ router.get("/:songId", async (req, res, next) => {
   next();
 });
 
+
+
 router.post("/", async (req, res, next) => {
   const { title, description, url, imageUrl, albumId } = req.body;
   if (albumId === null) { 
@@ -55,18 +57,7 @@ router.post("/", async (req, res, next) => {
   });
   res.json(newSong);}
 
-  //comment with song Id
 
-router.post('/:songId/comment', async (req,res)=>{
-  let id = req.params.songId
-  const {body} = req.body
-  const comment = await Comment.create({
-    songId: id,
-    body: body
-  })
-res.json(comment)
-
-});
 
   let albumCheck = await Album.findByPk(albumId)
   if (albumCheck) {
@@ -94,15 +85,38 @@ res.json(comment)
 });
 
 //comment with song Id
+router.get("/:songId/comments", (req, res) => {
+  //require fixing
+  let songId = req.params.songId;
+  let comment = Comment.findOne({
+    where: { songId: songId },
+  });
+  let song = Song.findByPk(songId);
+  if (song) {
+    res.json(comment);
+  } else {
+    const err = new Error();
+    err.message = "this song does not exist in the system";
+    err.status = 404;
+  }
+});
 
-router.post('/:songId/comment', async (req,res)=>{
+router.post('/:songId/comments', async (req,res,next)=>{
   let id = req.params.songId
   const {body} = req.body
-  const comment = await Comment.create({
-    songId: id,
-    body: body
-  })
-res.json(comment)
+  let song = await Song.findByPk(id)
+  if (song) {
+    const comment = await Comment.create({
+      songId: id,
+      body: body
+    })
+  res.json(comment)
+  } else {
+    const err = new Error()
+    err.message = "This song not exists"
+    err.status = 404
+    next(err)
+  }
 
 });
 
