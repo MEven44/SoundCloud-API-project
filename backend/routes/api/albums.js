@@ -60,7 +60,7 @@ router.get("/:albumId", async (req, res, next) => {
 
 router.put("/:albumId", async (req, res) => {
   let { albumId } = req.params;
-  let albumToEdit = await Song.findByPk(albumId);
+  let albumToEdit = await Album.findByPk(albumId);
 
   const { title, description, imageUrl } = req.body;
 
