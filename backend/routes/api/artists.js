@@ -11,16 +11,17 @@ const {
 } = require("../../db/models");
 
 //get artist details
-router.get('/:artistId', async (req,res)=>{
-  let id = req.params.artistId
-  
-  let artist = await User.findByPk(id)
+router.get('/:userId', async (req,res,next)=>{
+  let {userId} = req.params
+  console.log(userId)
+  let artist = await User.findByPk(userId)
   if (artist) {
     res.json(artist)
   }else{
     const err = new Error()
     err.message = "Couldn't find the artist"
     err.status = 404
+    next(err)
   }
 })
 

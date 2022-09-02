@@ -32,8 +32,15 @@ router.delete("/:commentId", async (req, res, next) => {
   let comment = await Comment.findByPk(id);
   if (comment) {
     comment.destroy();
-    res.json("comment succesfully deleted");
-    res.status = 200;
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  } else {
+    const err = new Error();
+    err.message = "Comment couldn't be found";
+    err.status = 404;
+    next(err);
   }
 });
 

@@ -10,7 +10,17 @@ const {
   Comment,
 } = require("../../db/models");
 const user = require("../../db/models/user");
+//get playlist for current
 
+router.get("/current", async (req, res) => {
+  let { id } = req.user.dataValues;
+  console.log(req.user);
+  const userPL = await Playlist.findAll({
+    where: { userId: id },
+  });
+
+  res.send(userPL);
+});
 //get playlist by Id
 router.get('/:playlistId', async (req,res,next)=> {
   let {playlistId} = req.params
@@ -27,7 +37,7 @@ router.get('/:playlistId', async (req,res,next)=> {
   next()
 })
 
-//create a play list - missing errors, correct preview image (alias???) - it still doesn't work ????
+//create a play list - preview image ?
 router.post("/", async (req, res) => {
 
   const { name, previewImage } = req.body;
@@ -44,17 +54,18 @@ router.post("/", async (req, res) => {
 });
 
 
-router.post('/:playlistId/songs', async (req,res,next)=>{
-    let {playlistId} = req.params
+router.post('/:playlistid/songs', async (req,res,next)=>{
+    let {playlistid} = req.params
+    console.log(playlistid)
     const {songId} = req.body
-    const updatePl = await PlaylistSong.findByPk(playlistId)
+    const updatePl = await Playlist.findByPk(playlistid)
     if (updatePl) {
-    updatePl.set({
-        playlistId: playlistId,
+    let newSong =await  PlaylistSong.create({
+        playlistId: playlistid,
         songId
     });
-    updatePl.save()
-    res.json(updatePl)
+   
+    res.json(newSong)
   } else {
     const err = new Error()
     err.message = "Couldn't find playlist"
@@ -65,6 +76,7 @@ router.post('/:playlistId/songs', async (req,res,next)=>{
 
 router.put("/:playlistId", async (req, res) => {
   let { playlistId } = req.params;
+
   let editPlaylist = await Playlist.findByPk(playlistId);
 
   const { name, previewImage} = req.body;
@@ -82,19 +94,12 @@ router.put("/:playlistId", async (req, res) => {
 });
 
 
-router.get("/current", async (req, res) => {
-  let {id} = req.user.dataValues;
-  const userPL = await Playlist.findAll({
-    where: { userId: userId },
-  });
 
-  res.json(userPL);
-});
-
-router.delete("/:playlistId", (req, res) => {
-  let playlist = req.params;
+router.delete("/:playlistId", async (req, res,next) => {
+  let id = req.params.playlistId
+  let playlist = await Playlist.findByPk(id)
   if (playlist) {
-    playlist.destroy();
+    await playlist.destroy();
     res.json({
       message: "Successfully deleted",
       statusCode: 200,
@@ -103,6 +108,7 @@ router.delete("/:playlistId", (req, res) => {
     const err = new Error();
     err.message = "playlist couldn't be found";
     err.status = 404;
+    next(err)
   }
 });
 module.exports = router;

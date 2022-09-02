@@ -12,7 +12,7 @@ const {
 
 router.get("/", async (req, res) => {
   let allAlbums = await Song.findAll();
-  res.json(allAlbums);
+  res.json({Albums: allAlbums});
 });
 
 router.post("/", async (req, res) => {
@@ -35,7 +35,7 @@ router.get("/current", async (req, res) => {
     where: { userId: userId },
   });
 
-  res.json(userAlbums);
+  res.json({Albums:userAlbums});
 });
 
 //get an album by id
@@ -78,18 +78,21 @@ router.put("/:albumId", async (req, res) => {
 
 });
 
-router.delete("/:albumId", (req, res) => {
-  let album = req.params;
-  if (album) {
-    song.destroy();
+
+router.delete("/:songId", async (req, res, next) => {
+  let id = req.params.songId;
+  let song = await Song.findByPk(id);
+  if (song) {
+    await song.destroy();
     res.json({
       message: "Successfully deleted",
       statusCode: 200,
     });
   } else {
     const err = new Error();
-    err.message = "album couldn't be found";
+    err.message = "song couldn't be found";
     err.status = 404;
+    next(err);
   }
 });
 module.exports = router;

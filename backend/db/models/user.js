@@ -5,8 +5,8 @@ const playlist = require("./playlist");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      const { id, username, email } = this;
-      return { id, username, email };
+      const { id, username,firstName,lastName, email } = this;
+      return { id, username,firstName,lastName, email };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
