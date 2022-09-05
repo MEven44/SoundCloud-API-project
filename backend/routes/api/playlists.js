@@ -22,16 +22,55 @@ router.get("/current", async (req, res) => {
   res.send(userPL);
 });
 //get playlist by Id
+//  {
+//       "id": 1,
+//       "userId": 1,
+//       "name": "Current Favorites",
+//       "createdAt": "2021-11-19 20:39:36",
+//       "updatedAt": "2021-11-19 20:39:36",
+//       "previewImage": "image url",
+//       "Songs": [
+//         {
+//           "id": 1,
+//           "userId": 1,
+//           "albumId": 1,
+//           "title": "Yesterday",
+//           "description": "A song about the past.",
+//           "url": "audio url",
+//           "createdAt": "2021-11-19 20:39:36",
+//           "updatedAt": "2021-11-19 20:39:36",
+//           "previewImage": "image url"
+//         }
+//       ]
+//     }
 router.get('/:playlistId', async (req,res,next)=> {
   let {playlistId} = req.params
-  const playlist = await Playlist.findByPk(playlistId)
+  const playlist = await Playlist.findByPk(playlistId, {
+    })
+  const playlistSongs = await PlaylistSong.findByPk(playlistId)
+    
+
   if (!playlist) {
     const err = new Error();
     err.message = "Couldn't find playlist";
     err.status = 404;
     next(err)
   }else{
-    res.json({Playlists: playlist})
+    res.json({
+      'id':playlist.id,
+      'userId':playlist.userId,
+      'name':playlist.name,
+      'previewImage':playlist.imageUrl,
+      'createdAt':playlist.createdAt,
+      'updatedAt':playlist.updatedAt,
+      
+      
+
+    
+    
+    
+    
+    })
    
   }
   next()

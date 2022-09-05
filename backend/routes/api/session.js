@@ -18,6 +18,9 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
+
+//log in?
+
 router.post("/", validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
 
@@ -31,10 +34,17 @@ router.post("/", validateLogin, async (req, res, next) => {
     return next(err);
   }
 
-  await setTokenCookie(res, user);
+ const token =  await setTokenCookie(res, user);
+  const userDetails = user.toJSON()
+  userDetails.token = token
 
   return res.json({
-    user,
+    'id': userDetails.id,
+    'username': user.username,
+    'firstName': user.firstName,
+    'lastName': user.lastName,
+    'email': user.email,
+    'Token': userDetails.token,
   });
 });
 

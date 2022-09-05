@@ -10,13 +10,32 @@ const {
   Comment,
 } = require("../../db/models");
 
-//get artist details
+
 router.get('/:userId', async (req,res,next)=>{
   let userId = req.params.userId
-  console.log(userId)
-  let artist = await User.findByPk(userId)
+  
+  let artist = await User.findByPk(userId,{
+    include: [{
+      model: Album
+    },
+    {
+      model: Song
+    }]
+  })
+  let totalSongs = await Song.count({
+    where: {userId:userId}
+  })
+  let totalAlbum = await Album.count({
+    where: {userId:userId}
+})
   if (artist) {
-    res.json(artist)
+    res.json({
+     "id": artist.id,
+     "username":artist.username,
+     "previewImage": artist.imageUrl,
+     "totalSongs": totalSongs,
+     "totalAlbum": totalAlbum
+    })
   }else{
     const err = new Error()
     err.message = "Couldn't find the artist"
@@ -46,14 +65,37 @@ router.get("/:artistId/songs", async (req, res,next) => {
 });
 
 //get all playlists from an artist/user ID
-
+//  {
+//       "Playlists": [
+//         {
+//           "id": 1,
+//           "userId": 1,
+//           "name": "Current Favorites",
+//           "createdAt": "2021-11-19 20:39:36",
+//           "updatedAt": "2021-11-19 20:39:36",
+//           "previewImage": "image url"
+//         }
+//       ]
+//     }
 router.get('/:artistId/playlists', async (req,res,next)=> {
-    let {artistId} = req.params
+    let artistId = req.params.artistId
     let playlists = await Playlist.findAll({
-      where: {userId:artistId}
-    })
+      where: {userId:artistId},
+      
+      })
+      console.log(playlists)
     if (playlists.length) {
-    res.json(playlists) 
+      for (let playlist of playlists) {
+
+        res.json({
+          'id':playlist.id,
+          'userId':playlist.userId,
+          'name':playlist.name,
+          'createdAt': playlist.createdAt,
+          'updatedAt':playlist.updatedAt,
+          'previewImage':playlist.imageUrl
+          }) 
+      }
     } else {
       const err = new Error()
       err.message = "Artist couldn't be found"
