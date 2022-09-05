@@ -57,18 +57,26 @@ router.get("/current", async (req, res) => {
 //get song by Id
 
 router.get("/:songId", async (req, res, next) => {
-  let songId = req.params.songId;
+  
+   const { songId } = req.params;
 
-  let oneSong = await Song.findAll({
-    where: { id: songId },
-  });
-  if (!oneSong.length) {
+   console.log(songId);
+   const oneSong = await Song.findByPk(songId, {
+     include: [
+       { model: User, attributes: ["id", "username"] },
+       { model: Album, attributes: ["id", "title", "imageUrl"] },
+     ],
+   });
+  if (!oneSong) {
     const err = new Error();
     err.message = "Song couldn't be found";
     err.status = 404;
     next(err);
   }
-  res.json(oneSong);
+  res.json({
+    Songs:oneSong,
+      
+  });
   next();
 });
 
@@ -121,6 +129,7 @@ router.get("/:songId/comments", async (req, res, next) => {
   let songId = req.params.songId;
   let comment = await Comment.findOne({
     where: { songId: songId },
+    include: { model: User, attributes: ['id','username']}
   });
 
   if (comment) {
@@ -158,18 +167,21 @@ router.put("/:songId", async (req, res, next) => {
   let { songId } = req.params;
   let songToEdit = await Song.findAll({
     where: { id: songId },
+    
   });
   if (songToEdit.length) {
-    const { title, description, url, imageUrl, albumId } = req.body;
+    const { title, description, url, imageUrl } = req.body;
     songToEdit[0].set({
+     
       title,
       description,
       url,
       imageUrl,
-      albumId,
+      
     });
     await songToEdit[0].save();
-    res.json(songToEdit[0]);
+    let updatedSong = await Song.findByPk(songId)
+    res.json(updatedSong);
   } else {
     const err = new Error();
     err.message = "Song couldn't be found";

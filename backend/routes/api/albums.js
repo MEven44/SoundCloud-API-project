@@ -51,6 +51,9 @@ router.get("/:albumId", async (req, res, next) => {
 
   let oneAlbum = await Album.findAll({
     where: { id: albumId },
+    include: {
+      model: Song      
+    }
   });
 
   if (!oneAlbum.length) {

@@ -12,7 +12,7 @@ const {
 
 //get artist details
 router.get('/:userId', async (req,res,next)=>{
-  let {userId} = req.params
+  let userId = req.params.userId
   console.log(userId)
   let artist = await User.findByPk(userId)
   if (artist) {

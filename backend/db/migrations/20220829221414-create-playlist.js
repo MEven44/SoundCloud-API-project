@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
-      previewImage: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       createdAt: {

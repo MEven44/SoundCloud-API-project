@@ -31,7 +31,7 @@ router.get('/:playlistId', async (req,res,next)=> {
     err.status = 404;
     next(err)
   }else{
-    res.json(playlist)
+    res.json({Playlists: playlist})
    
   }
   next()
@@ -80,7 +80,7 @@ router.put("/:playlistId", async (req, res) => {
 
   let editPlaylist = await Playlist.findByPk(playlistId);
 
-  const { name, previewImage} = req.body;
+  const { name, imageUrl } = req.body;
 
   if (!editPlaylist) {
     const err = new Error();
@@ -88,9 +88,16 @@ router.put("/:playlistId", async (req, res) => {
     err.status = 404;
     res.json(err);
   } else {
-    editPlaylist.set({ name, previewImage});
+    editPlaylist.set({ name, imageUrl });
     await editPlaylist.save();
-    res.json(editPlaylist);
+    res.json({
+      'id':editPlaylist.id,
+      'userId':editPlaylist.userId,
+      'name' :editPlaylist.name,
+      'createdAt':editPlaylist.createdAt,
+      'editedAt':editPlaylist.updatedAt,
+      'previewUrl':editPlaylist.imageUrl
+  });
   }
 });
 
