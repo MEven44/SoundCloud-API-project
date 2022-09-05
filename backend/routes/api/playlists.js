@@ -44,33 +44,27 @@ router.get("/current", async (req, res) => {
 //       ]
 //     }
 router.get('/:playlistId', async (req,res,next)=> {
-  let {playlistId} = req.params
-  const playlist = await Playlist.findByPk(playlistId, {
+  let Id = req.params.playlistId
+  const playlist = await Playlist.findByPk(Id)
+  const songs = await Playlist.findByPk(Id, {
+    include: {
+      model: Song,
+      through: {attributes: []}
+    },
+    exclude: Playlist
     })
-  const playlistSongs = await PlaylistSong.findByPk(playlistId)
-    
-
+  
+  
+console.log(Song)
   if (!playlist) {
     const err = new Error();
     err.message = "Couldn't find playlist";
     err.status = 404;
     next(err)
   }else{
-    res.json({
-      'id':playlist.id,
-      'userId':playlist.userId,
-      'name':playlist.name,
-      'previewImage':playlist.imageUrl,
-      'createdAt':playlist.createdAt,
-      'updatedAt':playlist.updatedAt,
-      
-      
-
     
-    
-    
-    
-    })
+    console.log(Song)
+    res.json(songs)
    
   }
   next()
