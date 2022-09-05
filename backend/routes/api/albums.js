@@ -10,10 +10,16 @@ const {
   Comment,
 } = require("../../db/models");
 
+
+//get all albums
+
 router.get("/", async (req, res) => {
   let allAlbums = await Album.findAll();
   res.json({Albums: allAlbums});
 });
+
+
+//create an album
 
 router.post("/", async (req, res) => {
   const { title, description, imageUrl } = req.body;
@@ -58,6 +64,10 @@ router.get("/:albumId", async (req, res, next) => {
   next();
 });
 
+
+//edit an album
+
+
 router.put("/:albumId", async (req, res) => {
   let { albumId } = req.params;
   let albumToEdit = await Album.findByPk(albumId);
@@ -78,6 +88,7 @@ router.put("/:albumId", async (req, res) => {
 
 });
 
+// delete an album
 
 router.delete("/:songId", async (req, res, next) => {
   let id = req.params.songId;

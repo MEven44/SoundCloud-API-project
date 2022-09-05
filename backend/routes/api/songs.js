@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
 });
 
 //get songs of the current user
+
 router.get("/current", async (req, res) => {
   let userId = req.user.dataValues.id;
   const userSong = await Song.findAll({
@@ -51,6 +52,9 @@ router.get("/current", async (req, res) => {
     songs: userSong,
   });
 });
+
+
+//get song by Id
 
 router.get("/:songId", async (req, res, next) => {
   let songId = req.params.songId;
@@ -67,6 +71,10 @@ router.get("/:songId", async (req, res, next) => {
   res.json(oneSong);
   next();
 });
+
+
+//create a song (was wanting to add a unique url tho the tests wont allow it)
+
 
 router.post("/", async (req, res, next) => {
   const { title, description, url, imageUrl, albumId } = req.body;
@@ -125,10 +133,13 @@ router.get("/:songId/comments", async (req, res, next) => {
   }
 });
 
+
+//create a comment
+
 router.post("/:songId/comments", async (req, res, next) => {
   let id = req.params.songId;
   const { body } = req.body;
-  let song = await Song.findByPk(id);
+  let song = await Song.findByPk(id); //checks if there is a song to comment about
   if (song) {
     const comment = await Comment.create({
       songId: id,

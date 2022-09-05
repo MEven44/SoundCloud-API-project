@@ -37,11 +37,12 @@ router.get('/:playlistId', async (req,res,next)=> {
   next()
 })
 
-//create a play list - preview image ?
+//create a play list 
+
 router.post("/", async (req, res) => {
 
   const { name, previewImage } = req.body;
-  let userId = req.user.id // gives me null
+  let userId = req.user.id 
   
   const newPlaylist = await Playlist.create({
     userId: userId,

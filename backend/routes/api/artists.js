@@ -31,10 +31,10 @@ router.get('/:userId', async (req,res,next)=>{
 router.get("/:artistId/songs", async (req, res,next) => {
   let id = req.params.artistId;
   console.log(id)
-  let songById = await Song.findAll({
+  let songById = await Song.findAll({ //getting all songs
     where: {userId:id},
   });
-  let artist = await User.findByPk(id)
+  let artist = await User.findByPk(id) //checks if the artist is in data base
   if (artist) {
       res.json(songById);
   } else {
@@ -46,6 +46,7 @@ router.get("/:artistId/songs", async (req, res,next) => {
 });
 
 //get all playlists from an artist/user ID
+
 router.get('/:artistId/playlists', async (req,res,next)=> {
     let {artistId} = req.params
     let playlists = await Playlist.findAll({
