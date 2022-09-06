@@ -90,7 +90,7 @@ router.post("/",requireAuth,restoreUser, async (req, res) => {
 });
 
 
-router.post('/:playlistid/songs', async (req,res,next)=>{
+router.post('/:playlistid/songs',requireAuth,restoreUser, async (req,res,next)=>{
     let {playlistid} = req.params
    
     const {songId} = req.body
