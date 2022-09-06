@@ -92,7 +92,7 @@ router.post("/",requireAuth,restoreUser, async (req, res) => {
 
 router.post('/:playlistid/songs', async (req,res,next)=>{
     let {playlistid} = req.params
-    console.log(playlistid)
+   
     const {songId} = req.body
     const updatePl = await Playlist.findByPk(playlistid)
     if (updatePl) {
