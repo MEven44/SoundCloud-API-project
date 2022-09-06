@@ -55,7 +55,7 @@ router.get("/:artistId/songs", async (req, res,next) => {
   });
   let artist = await User.findByPk(id) //checks if the artist is in data base
   if (artist) {
-      res.json(songById);
+      res.json({"Songs": songById});
   } else {
     const err = new Error();
     err.message = "Artist couldn't be found";
@@ -83,19 +83,19 @@ router.get('/:artistId/playlists', async (req,res,next)=> {
       where: {userId:artistId},
       
       })
-      console.log(playlists)
+     
     if (playlists.length) {
+      let playlistArr = []
       for (let playlist of playlists) {
-
-        res.json({
-          'id':playlist.id,
-          'userId':playlist.userId,
-          'name':playlist.name,
-          'createdAt': playlist.createdAt,
-          'updatedAt':playlist.updatedAt,
-          'previewImage':playlist.imageUrl
-          }) 
-      }
+        playlistArr.push(playlist)
+        // 'id':playlist.id,
+        // 'userId':playlist.userId,
+        // 'name':playlist.name,
+        // 'createdAt': playlist.createdAt,
+        // 'updatedAt':playlist.updatedAt,
+        // 'previewImage':playlist.imageUrl
+      } 
+      res.json({'Playlists': playlistArr})
     } else {
       const err = new Error()
       err.message = "Artist couldn't be found"

@@ -10,6 +10,8 @@ const {
   Comment,
 } = require("../../db/models");
 const user = require("../../db/models/user");
+const { restoreUser } = require("../../utils/auth.js");
+const { requireAuth } = require("../../utils/auth.js");
 //get playlist for current
 
 router.get("/current", async (req, res) => {
@@ -72,18 +74,18 @@ console.log(Song)
 
 //create a play list 
 
-router.post("/", async (req, res) => {
+router.post("/",requireAuth,restoreUser, async (req, res) => {
 
-  const { name, previewImage } = req.body;
+  const { name, imageUrl } = req.body;
   let userId = req.user.id 
   
   const newPlaylist = await Playlist.create({
-    userId: userId,
+    userId,
     name,
-    previewImage,
+   imageUrl,
     
   });
-
+  
   res.json(newPlaylist);
 });
 

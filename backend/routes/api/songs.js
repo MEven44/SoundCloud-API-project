@@ -127,13 +127,13 @@ router.post("/", async (req, res, next) => {
 router.get("/:songId/comments", async (req, res, next) => {
   //require fixing
   let songId = req.params.songId;
-  let comment = await Comment.findOne({
+  let comment = await Comment.findAll({
     where: { songId: songId },
     include: { model: User, attributes: ['id','username']}
   });
 
-  if (comment) {
-    res.json(comment);
+  if (comment.length) {
+    res.json({'Comments': comment});
   } else {
     const err = new Error();
     err.message = "Couldn't find the comment";
@@ -151,6 +151,7 @@ router.post("/:songId/comments", async (req, res, next) => {
   let song = await Song.findByPk(id); //checks if there is a song to comment about
   if (song) {
     const comment = await Comment.create({
+      userId:req.user.dataValues.id,
       songId: id,
       body: body,
     });
