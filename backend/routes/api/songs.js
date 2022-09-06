@@ -10,6 +10,8 @@ const {
   Comment,
 } = require("../../db/models");
 const user = require("../../db/models/user");
+const { restoreUser } = require("../../utils/auth.js");
+const { requireAuth } = require("../../utils/auth.js");
 
 router.get("/", async (req, res) => {
   let { size, page } = req.query;
@@ -42,7 +44,7 @@ router.get("/", async (req, res) => {
 
 //get songs of the current user
 
-router.get("/current", async (req, res) => {
+router.get("/current",requireAuth, restoreUser, async (req, res) => {
   let userId = req.user.dataValues.id;
   const userSong = await Song.findAll({
     where: { userId: userId },
@@ -145,7 +147,7 @@ router.get("/:songId/comments", async (req, res, next) => {
 
 //create a comment
 
-router.post("/:songId/comments", async (req, res, next) => {
+router.post("/:songId/comments", requireAuth,restoreUser, async (req, res, next) => {
   let id = req.params.songId;
   const { body } = req.body;
   let song = await Song.findByPk(id); //checks if there is a song to comment about
@@ -164,7 +166,7 @@ router.post("/:songId/comments", async (req, res, next) => {
   }
 });
 
-router.put("/:songId", async (req, res, next) => {
+router.put("/:songId",requireAuth,restoreUser, async (req, res, next) => {
   let { songId } = req.params;
   let songToEdit = await Song.findAll({
     where: { id: songId },

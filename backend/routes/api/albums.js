@@ -9,7 +9,8 @@ const {
   User,
   Comment,
 } = require("../../db/models");
-
+const { restoreUser } = require("../../utils/auth.js");
+const { requireAuth } = require("../../utils/auth.js");
 
 //get all albums
 
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
 
 //create an album
 
-router.post("/", async (req, res) => {
+router.post("/",requireAuth,restoreUser, async (req, res) => {
   const { title, description, imageUrl } = req.body;
   const newAlbum = await Album.create({
     userId: req.user.dataValues.id,
@@ -34,7 +35,7 @@ router.post("/", async (req, res) => {
 
 //get albums of current user
 
-router.get("/current", async (req, res) => {
+router.get("/current",requireAuth,restoreUser, async (req, res) => {
   let userId = req.user.dataValues.id;
   console.log(userId);
   const userAlbums = await Album.findAll({
