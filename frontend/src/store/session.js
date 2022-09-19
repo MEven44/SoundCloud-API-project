@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const DEMO_USER = 'session/demoUser'
 
 const setUser = (user) => {
   return {
@@ -17,6 +18,8 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+
 //login user thunk
 export const login = (user) => async (dispatch) => {
     console.log('THUNK LOGIN', user)
@@ -31,6 +34,24 @@ export const login = (user) => async (dispatch) => {
   const data = await response.json();
   console.log('login thunk data from API:', data)
   dispatch(setUser(data.user));
+  console.log('RESPONSE LOGIN', data)
+  return response;
+};
+//demo user thunk 
+export const demoLogin = (user) => async (dispatch) => {
+  console.log("DEMO THUNK LOGIN", user);
+  const { credential, password } = user; //what this line is doing?
+  const response = await csrfFetch("/api/session", {
+    method: "POST",
+    body: JSON.stringify({
+      credential,
+      password,
+    }),
+  });
+  const data = await response.json();
+  console.log("login thunk data from API:", data);
+  dispatch(setUser(data.user));
+  console.log("RESPONSE LOGIN", data);
   return response;
 };
 //rstore user thunk
@@ -41,14 +62,17 @@ export const restoreUser = () => async (dispatch) => {
   return response;
 };
 
+
 //sign up thunk 
 export const signup = (user) => async (dispatch) => {
-  const { username, email, password } = user;
+  const { username, email,firstName,lastName, password } = user;
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
       username,
       email,
+      firstName,
+      lastName,
       password,
     }),
   });
@@ -78,6 +102,9 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       console.log('USER SESSION NEW STATE:' ,newState)
       return newState;
+    case DEMO_USER:
+      newState = Object.assign({}, state)
+      newState.user = action.payload
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;

@@ -1,0 +1,38 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    color: #CCCCCC;
+    list-style: none;
+}
+
+div {
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #5b5757;
+    box-sizing: bordered-box;
+    width: 100%;
+    height: 80px;
+    
+    
+}
+
+#navBar {
+    box-sizing:bordered-box;
+    margin: 15px;
+    border-left: 4px solid black;
+    height: 100%;
+    text-decoration: none;
+
+}
+
+ul .profile-dropdown {
+    box-sizing: border-box;
+    background-color: #5b5757;
+    max-width: 300px;
+    border: 2px solid black;
+    
+
+}
+
+

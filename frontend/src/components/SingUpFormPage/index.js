@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
@@ -12,19 +12,30 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const[user, setUser] = useState(sessionUser);
+  const [firstName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
 
-  if (sessionUser) return <Redirect to="/" />;
+  const history = useHistory()
+
+  console.log("LOGIN FORM SESSION USER", sessionUser)
+
+  useEffect(() => {
+    if (user) return history.push('/')
+  }, [sessionUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({ email, username, password })
+        sessionActions.signup({ email, username,firstName,lastName, password })
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
+    
     }
     return setErrors([
       "Confirm Password field must be the same as the Password field",
@@ -57,6 +68,26 @@ function SignupFormPage() {
         />
       </label>
       <label>
+        First name
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+      </label>
+     
+        <label>
+        Last name
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+     
         Password
         <input
           type="password"

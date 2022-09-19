@@ -3,10 +3,13 @@ import thunk from "redux-thunk";
 import { restoreCSRF, csrfFetch } from "./csrf";
 import  * as sessionActions from '../store/session'
 import sessionReducer from "../store/session";
+import songsReducer from "./songs";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
+  songs: songsReducer,
+  // albums: albumsReducer
 });
 
 let enhancer;
@@ -24,13 +27,13 @@ const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-const store = configureStore();
+// const store = configureStore();
 
-if (process.env.NODE_ENV !== "production") {
-  restoreCSRF();
+// if (process.env.NODE_ENV !== "production") {
+//   restoreCSRF();
 
-  window.csrfFetch = csrfFetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
-}
+//   window.csrfFetch = csrfFetch;
+//   window.store = store;
+//   window.sessionActions = sessionActions;
+// }
 export default configureStore;
