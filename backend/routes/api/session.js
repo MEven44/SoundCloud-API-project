@@ -39,12 +39,14 @@ router.post("/", validateLogin, async (req, res, next) => {
   userDetails.token = token
 
   return res.json({
-    'id': userDetails.id,
-    'username': user.username,
-    'firstName': user.firstName,
-    'lastName': user.lastName,
-    'email': user.email,
-    'Token': userDetails.token,
+    user:{
+      'id': userDetails.id,
+      'username': user.username,
+      'firstName': user.firstName,
+      'lastName': user.lastName,
+      'email': user.email,
+      'Token': userDetails.token,
+    }
   });
 });
 
