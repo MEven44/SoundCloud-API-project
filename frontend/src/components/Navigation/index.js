@@ -18,18 +18,18 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         
-        <select>
-          <option>
-            <NavLink id="nanBar" to="/login">
+   
+         
+            <NavLink id="navBar" to="/login">
               Log In
             </NavLink>
-          </option>
-          <option>
+         
+          
             <NavLink id="navBar" to="/signup">
               Sign Up
             </NavLink>
-          </option>
-        </select>
+          
+     
 
         <DemoUser></DemoUser>
       </>

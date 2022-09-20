@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_SONGS = "tunes/loadSongs";
 const CREATE_SONG = "tunes/createSong";
+const DELETE_SONG = "tunes/deleteSong";
 
 
 export const loadSongs = (songs) => {
@@ -11,8 +12,6 @@ export const loadSongs = (songs) => {
   };
 };
 
-
-
 export const createSong = (song) => {
   return {
     type: CREATE_SONG,
@@ -20,6 +19,17 @@ export const createSong = (song) => {
   };
 };
 
+export const deleteSong = (song) => {
+  return {
+    type: DELETE_SONG,
+    song,
+  };
+};
+
+
+
+
+// get all songs thunk
 export const fetchSongs = () => async (dispatch) => {
   const response = await fetch("/api/songs");
   const data = await response.json();
@@ -27,6 +37,9 @@ export const fetchSongs = () => async (dispatch) => {
   dispatch(loadSongs(data.songs));
 };
 
+
+
+//post a song Thunk
 export const createSongThunk = (payload) => async (dispatch) => {
   console.log('CREAT SONG THUNK', payload)
   if (!payload.albumId) payload.albumId=null
@@ -42,6 +55,15 @@ export const createSongThunk = (payload) => async (dispatch) => {
     return song;
   }
 };
+
+//delete a song thunk
+
+
+
+
+
+
+
 
 const initialState = {songList:[]}; //???
 

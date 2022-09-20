@@ -8,7 +8,6 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 50px;
     box-sizing: content-box;
     width: 600px;
     height: 30px;
@@ -18,8 +17,8 @@ input {
 
 button {
     box-sizing: content-box;
-    background-color: orange;
-    border-radius: 30px;
+    background-color: rgb(230, 226, 219);
+    color:#5b5757 ;
     margin-top: 20px;
     height: 50px;
     max-width: 50px;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {NavLink, useHistory} from 'react-router-dom'
 import ReactAudioPlayer from "react-audio-player";
 import {fetchSongs} from "../../store/songs";
 
@@ -14,23 +15,16 @@ useEffect(() => {
 
 console.log('HOME PAGE USE SELECTORE', songList)
 
-    return(
-      
-       Object.values(songList).map((song) => (
-      <p id="audio">
-        <h2>{song.title}</h2>
+    return Object.values(songList).map((song) => (
+      <div id="audio">
+        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
         <img
-          src={
-            song.imabgUrl === null
-              ? "API-project/frontend/src/images/istockphoto-486407890-612x612.jpeg"
-              : song.imabgUrl
-          }
+          src={"https://m.media-amazon.com/images/I/81CETsEF63L._AC_SX466_.jpg"}
           alt={song.title}
         />
         <ReactAudioPlayer src={song.url} autoPlay={false} controls={true} />
-      </p>)
-     
-    ))
+      </div>
+    ));
     
 }
 
