@@ -18,6 +18,8 @@ div {
 }
 
 #navBar {
+     display: flex;
+    flex-direction: row;
     box-sizing:bordered-box;
     margin: 15px;
     border-left: 4px solid black;
@@ -26,11 +28,12 @@ div {
 
 }
 
-ul .profile-dropdown {
+.profile-dropdown {
     box-sizing: border-box;
     background-color: #5b5757;
     max-width: 300px;
     border: 2px solid black;
+    z-index: 10;
     
 
 }

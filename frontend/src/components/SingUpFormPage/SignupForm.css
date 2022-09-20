@@ -21,5 +21,6 @@ button {
     background-color: orange;
     border-radius: 30px;
     margin-top: 20px;
-    height: 30px;
+    height: 50px;
+    max-width: 50px;
 }

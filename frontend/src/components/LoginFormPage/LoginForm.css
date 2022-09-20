@@ -23,3 +23,8 @@ button {
     margin-top: 20px;
     height: px;
 }
+
+#header {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,5 +1,7 @@
-const LOAD_SONGS = "songs/loadSongs";
-const CREATE_SONG = "songs/createSong";
+import { csrfFetch } from "./csrf";
+
+const LOAD_SONGS = "tunes/loadSongs";
+const CREATE_SONG = "tunes/createSong";
 
 
 export const loadSongs = (songs) => {
@@ -26,7 +28,9 @@ export const fetchSongs = () => async (dispatch) => {
 };
 
 export const createSongThunk = (payload) => async (dispatch) => {
-  const response = await fetch("/api/songs", {
+  console.log('CREAT SONG THUNK', payload)
+  if (!payload.albumId) payload.albumId=null
+  const response = await csrfFetch("/api/songs", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -51,6 +55,14 @@ const songsReducer = (state = initialState, action) => {
       // console.log(typeof newState.action.songs)
         return newState
       };
+      case CREATE_SONG: {
+        console.log('CREATE SONGS STATE', action.songs)
+        const newState = {...state,[action.song.id]:action.song}
+        console.log('MY NEW STATE BEFORE PUSHING',newState)
+        newState.songList.push(action.song)
+        console.log("MY NEW STATE after PUSHING", newState);
+        return newState
+      }
       
       
     

@@ -14,14 +14,24 @@ useEffect(() => {
 
 console.log('HOME PAGE USE SELECTORE', songList)
 
-    return (
-        <p id='audio'>
-            <img src={''} alt={''} />
-            <ReactAudioPlayer src={''} 
-            autoPlay={false}
-            controls={true} />
-        </p>
-    )
+    return(
+      
+       Object.values(songList).map((song) => (
+      <p id="audio">
+        <h2>{song.title}</h2>
+        <img
+          src={
+            song.imabgUrl === null
+              ? "API-project/frontend/src/images/istockphoto-486407890-612x612.jpeg"
+              : song.imabgUrl
+          }
+          alt={song.title}
+        />
+        <ReactAudioPlayer src={song.url} autoPlay={false} controls={true} />
+      </p>)
+     
+    ))
+    
 }
 
 export default HompPage

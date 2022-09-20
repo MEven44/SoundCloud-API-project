@@ -6,6 +6,7 @@ import "./Navigation.css";
 import DemoUser from './DemoUserButton'
 
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -16,6 +17,7 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
+        
         <select>
           <option>
             <NavLink id="nanBar" to="/login">
@@ -28,22 +30,21 @@ function Navigation({ isLoaded }) {
             </NavLink>
           </option>
         </select>
+
         <DemoUser></DemoUser>
       </>
     );
   }
 
   return (
-    <div>
-      <ul>
-        <li>
-          <NavLink id="navBar" exact to="/">
-            Home
-          </NavLink>
-          {isLoaded && sessionLinks}
-        </li>
-       
-      </ul>
+    <div id='header'>
+      <NavLink id="navBar" exact to="/">
+        Home
+      </NavLink>
+      {isLoaded && sessionLinks}
+      <NavLink id="navBar" to="/new-song">
+        Upload
+      </NavLink>
     </div>
   );
 }
