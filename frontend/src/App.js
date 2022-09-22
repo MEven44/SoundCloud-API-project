@@ -9,7 +9,12 @@ import HomePage  from "./components/homePage";
 import SongInput from "./components/NewSongForm";
 import SingleSong from "./components/SingleSong";
 import EditSong from "./components/EditSong.js";
+import Footer from "./components/footer";
 import { fetchSongs } from "./store/songs";
+import Deleted from "./components/Deleted";
+import Albums from "./components/albums";
+import SingleAlbum from "./components/singleAlbum/SingleAlbum";
+import AlbumInput from "./components/newAlbum/NewAlbum";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +30,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Footer />
       {isLoaded && (
         <Switch>
         <Route exact path='/'>
@@ -39,6 +45,18 @@ function App() {
           <Route path='/new-song'>
             <SongInput />
           </Route>
+          <Route path='/deleted'>
+            <Deleted />
+          </Route>
+            <Route exact path='/albums/new-album'>
+              <AlbumInput />
+            </Route>
+          <Route exact path='/albums'>
+            <Albums />
+          </Route>
+          <Route  path='/albums/:albumId'>
+            <SingleAlbum />
+          </Route>
           <Route path='/songs/:songId/edit'>
             <EditSong />
           </Route>
@@ -46,6 +64,7 @@ function App() {
           <SingleSong />
           </Route>
         </Switch>
+      
       )}
     </>
   );

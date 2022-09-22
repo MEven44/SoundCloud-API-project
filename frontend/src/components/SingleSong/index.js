@@ -1,40 +1,65 @@
 import {useSelector , useDispatch} from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import ReactAudioPlayer from "react-audio-player";
-import {fetchSongs} from '../../store/songs'
+import {removeSong, fetchSongs} from '../../store/songs'
 import {useEffect} from 'react'
+import { currentSong } from '../../store/songs';
 import './SingleSong.css'
-import EditSong from '../EditSong.js';
+
 
 
 function SingleSong(){
     let history = useHistory()
     let {songId} = useParams()
     let songs = useSelector(state=>state.songs)
-    console.log('SONG ,A SINGLE ONE', songs)
+    
     
     let dispatch = useDispatch()
     
     useEffect(() => {
     dispatch(fetchSongs());
     }, [dispatch]);
+
+    const handleClick = (e) => {
+      console.log('BUTTON DELETE WORKING?')
+      dispatch(removeSong(songId))
+        // e.preventDefault()
+      history.push('/deleted')
+     
+     
+    };
+
     if (!songs) return null
     return (
-        <div id="audio">
-        <h2>{songs[songId].title}</h2>
+      <div id="audio">
+        <h2 id="song-title">{songs[songId].title}</h2>
         <img
-          src={"https://m.media-amazon.com/images/I/81CETsEF63L._AC_SX466_.jpg"}
+          id="main-song"
+          src={songs[songId].imageUrl}
           alt={songs[songId].title}
         />
         <div>
-          <ReactAudioPlayer src={songs[songId].url} autoPlay={false} controls={true} />
+          <img
+            id="play-btn"
+            src="https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png"
+            onClick={() => dispatch(currentSong(songs[songId]))}
+          />
         </div>
-        <button onClick={()=>history.push(`/songs/${songId}/edit`)}>update my song</button>
-        </div>
+        <button
+          id="song-btn"
+          onClick={() => history.push(`/songs/${songId}/edit`)}
+        >
+          update this song
+        </button>
+        <button id="song-btn" onClick={handleClick}>
+          Delete this song
+        </button>
+      </div>
     );
 
     
 
 }
+
 
 export default SingleSong

@@ -31,9 +31,10 @@ function SignupFormPage() {
       setErrors([]);
       return dispatch(
         sessionActions.signup({ email, username,firstName,lastName, password })
-      ).catch(async (res) => {
+        ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
+        history.push("/");
       });
     
     }

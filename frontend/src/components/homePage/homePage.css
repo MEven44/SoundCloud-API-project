@@ -1,5 +1,46 @@
+.container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content:flex-start;
+    
+}
+
 #audio {
+    display:flex;
+    position: relative;
     box-sizing: border-box;
-    margin: auto;
-    padding-top: 200px;
+    margin: 1em;
+    padding: 6em;
+    max-width: fit-content;
+    
+}
+
+#main-song {
+
+    position:absolute; 
+    top: 0px; left: 
+    0px; 
+    z-index: 1;
+
+
+}
+
+#play-btn {
+    position:absolute; 
+    top: 5em; 
+    left: 5em; 
+    z-index: 3;
+    object-fit:contain;
+    box-sizing: border-box;
+    max-height: 3em;
+    max-width: 3em;
+}
+
+#song-title {
+    position:absolute; 
+    top: 0px; left: 
+    0px; 
+    z-index: 4;
+    text-decoration: none;
 }

@@ -11,7 +11,7 @@ function LoginFormPage() {
   const dispatch = useDispatch();
   
   const sessionUser = useSelector((state) => state.session.user); //I removed .user from state.session
-  
+  console.log('SESSION USER',sessionUser)
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -28,7 +28,7 @@ function LoginFormPage() {
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-        history.push('/')
+        // history.push('/')
       }
     );
   };

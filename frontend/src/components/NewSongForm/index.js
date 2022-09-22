@@ -1,9 +1,12 @@
 // {  title, description, url, imageUrl, albumId;}
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createSongThunk } from '../../store/songs'
+
+
 import './NewSong.css';
 
 const SongInput = () => {
@@ -12,9 +15,21 @@ const SongInput = () => {
   const [url,setUrl] = useState ('')
   const [imageUrl, setImageUrl] = useState("");
   const [album,setAlbum] = useState(null)
+  const [error,setError] = useState([])
   const dispatch = useDispatch();
 
+
+  useEffect(()=>{
+    let errors =[]
+    if (!title) errors.push("Give your song a title")
+    if (!url || !url.includes('.mp3')) errors.push("your song must have a valid url")
+    setError(errors)
+  },[url,title])
+
+const history = useHistory();
+
   const handleSubmit = async (e) => {
+    let errors = []
     e.preventDefault();
     const newSong = {
       title,
@@ -24,9 +39,17 @@ const SongInput = () => {
       albumId: album
       
     };
-
-    const article = await dispatch(createSongThunk(newSong));
-    if (article) reset();
+    if (title.length === 0) {
+      alert('you should give a title')
+      return}
+    
+    if (url.length === 0 && !url.includes('.mp3')) {
+      alert('your url is not valid')
+      return 
+    }
+    const tune = await dispatch(createSongThunk(newSong));
+    if (tune) 
+    history.push(`/songs/${tune.id}`)
   };
 
   const reset = () => {
@@ -40,6 +63,9 @@ const SongInput = () => {
   return (
     <div className="inputBox">
       <h1>Your New Song</h1>
+      {error.length && error.map(error=>{
+        return (<li key={error}>{error}</li>)
+      })}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

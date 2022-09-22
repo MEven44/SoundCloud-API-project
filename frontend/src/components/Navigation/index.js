@@ -13,7 +13,23 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   console.log('NAVIGATION BAR SESSION USER', sessionUser)
   if (sessionUser) {
-    sessionLinks = <ProfileButton user={sessionUser} />;
+    sessionLinks = (
+      <>
+        <NavLink id="navBar" exact to="/">
+          Home
+        </NavLink>
+        <NavLink id="navBar" to="/new-song">
+          Upload
+        </NavLink>
+        <NavLink id="navBar" to="/albums">
+          Albums
+        </NavLink>
+        <NavLink id="navBar" to="/albums/new-album">
+          New album
+        </NavLink>
+        <ProfileButton id='profile-btn' user={sessionUser} />
+      </>
+    );
   } else {
     sessionLinks = (
       <>
@@ -37,14 +53,8 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div id='header'>
-      <NavLink id="navBar" exact to="/">
-        Home
-      </NavLink>
+    <div id="header">
       {isLoaded && sessionLinks}
-      <NavLink id="navBar" to="/new-song">
-        Upload
-      </NavLink>
     </div>
   );
 }

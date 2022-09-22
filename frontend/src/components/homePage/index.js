@@ -1,30 +1,43 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {NavLink, useHistory} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import ReactAudioPlayer from "react-audio-player";
-import {fetchSongs} from "../../store/songs";
+import {currentSong, fetchSongs} from "../../store/songs";
+import './homePage.css'
+
 
 function HompPage (){
 const songList = useSelector(state=>state.songs)
 const dispatch = useDispatch()
+const currentlist = songList.songList
 
 useEffect(() => {
   dispatch(fetchSongs());
 }, [dispatch]);
 
-console.log('HOME PAGE USE SELECTORE', songList)
 
-    return Object.values(songList).map((song) => (
-      <div id="audio">
-        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
-        <img
-          src={"https://m.media-amazon.com/images/I/81CETsEF63L._AC_SX466_.jpg"}
-          alt={song.title}
-        />
-        <ReactAudioPlayer src={song.url} autoPlay={false} controls={true} />
+
+console.log('HOME PAGE USE SELECTORE', songList)
+    if (!songList) return null
+    else
+   return ( <div className='container'>
+    {currentlist.map((song) => (
+        <div id="audio">
+          <NavLink id="song-title" to={`/songs/${song.id}`}>
+            {song.title}
+          </NavLink>
+          <img src={song.imageUrl} alt={song.title} id="main-song" />
+
+          <img 
+            id="play-btn"
+            src="https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png"
+            onClick={() => dispatch(currentSong(song))}
+           
+          />
+        </div>))}
       </div>
-    ));
+    );
     
 }
 

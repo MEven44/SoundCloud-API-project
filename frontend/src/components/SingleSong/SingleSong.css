@@ -1,6 +1,7 @@
  
  
  img {
+  position:relative;
   display: block;
   max-width:200px;
   max-height:200px;
@@ -8,7 +9,8 @@
   height: auto;
 }
 
-#audio:not(h2){
-    display: flex;
-    flex-direction: row;
+#song-btn {
+   position: absolute
+   
+
 }

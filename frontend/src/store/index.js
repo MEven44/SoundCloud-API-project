@@ -4,12 +4,13 @@ import { restoreCSRF, csrfFetch } from "./csrf";
 import  * as sessionActions from '../store/session'
 import sessionReducer from "../store/session";
 import songsReducer from "./songs";
+import albumReducer from "./albums";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   songs: songsReducer,
-  // albums: albumsReducer
+  albums: albumReducer
 });
 
 let enhancer;

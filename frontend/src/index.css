@@ -1,1 +1,8 @@
 /* TODO Add site wide styles */
+
+
+textarea {
+    padding: 1em;
+    margin-left: 1em;
+    max-width: 30em;
+}
