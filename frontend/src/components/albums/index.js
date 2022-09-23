@@ -11,7 +11,7 @@ function Albums() {
     
   useEffect(() => {dispatch(fetchAlbums())}, [dispatch]);
 
-  console.log("ALBUMS PAGE USE SELECTORE", albumsList);
+
   if (!albumsList) return null;
   else
     return Object.values(albumsList).map((album) => (

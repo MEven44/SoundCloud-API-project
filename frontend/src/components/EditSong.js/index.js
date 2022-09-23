@@ -10,10 +10,9 @@ import "../NewSongForm/NewSong.css";
 const EditSong = () => {
   let song = useSelector(state=>state.songs)
   let {songId} = useParams()
-  console.log ('THIS IS SONG:', song[songId])
+
   
   const [title, setTitle] = useState(song[songId].title);
-  console.log("EDIT SONG ID", songId);
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState(song[songId].url);
   const [imageUrl, setImageUrl] = useState('');
@@ -41,6 +40,7 @@ const EditSong = () => {
             imageUrl,
             albumId: album,
         };
+         
         
         const postSong = await dispatch(editSongThunk(newSong, songId));
         if (postSong) history.push('/');

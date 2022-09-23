@@ -15,12 +15,7 @@ input {
     
 }
 
-button {
-    box-sizing: content-box;
-    background-color: orange;
-    margin: 5px;
-    height: 15px;
-}
+
 
 #header {
     display: flex;

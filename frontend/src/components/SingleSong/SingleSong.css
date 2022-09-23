@@ -1,16 +1,34 @@
- 
+ #song-title {
+   color:white;
+   background-color: black;
+   font-size: large;
+ }
  
  img {
   position:relative;
   display: block;
-  max-width:200px;
-  max-height:200px;
-  width: auto;
-  height: auto;
+  max-width:13em;
+  max-height:13em;
+  padding-top: 1em;
+  
 }
 
-#song-btn {
-   position: absolute
-   
+#delete-song {
+   position: absolute;
+   top: 16em;
+   left:0;
+   max-width: 15em;
+   max-height: 1.7em;
+   background-color: white;
+
+}
+
+#update-song {
+   position: absolute;
+   top: 19em;
+   left: 0em;
+   max-width: 15em;
+   max-height: 1.7em;
+   background-color: white;
 
 }

@@ -21,7 +21,7 @@ function SingleSong(){
     }, [dispatch]);
 
     const handleClick = (e) => {
-      console.log('BUTTON DELETE WORKING?')
+  
       dispatch(removeSong(songId))
         // e.preventDefault()
       history.push('/deleted')
@@ -46,12 +46,12 @@ function SingleSong(){
           />
         </div>
         <button
-          id="song-btn"
+          id="update-song"
           onClick={() => history.push(`/songs/${songId}/edit`)}
         >
           update this song
         </button>
-        <button id="song-btn" onClick={handleClick}>
+        <button id="delete-song" onClick={handleClick}>
           Delete this song
         </button>
       </div>

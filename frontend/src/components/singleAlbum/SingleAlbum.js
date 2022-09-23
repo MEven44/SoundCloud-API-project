@@ -10,8 +10,8 @@ function SingleAlbum() {
   let { albumId } = useParams();
   let albums = useSelector((state) => state.albums);
   let songs = useSelector(state=>state.songs)
-  // const findSongs = 
-    console.log("SINGLE ALBUM USE SELECTORE STATE CHECK",albums[albumId])
+ 
+
    
   let dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ function SingleAlbum() {
   }, [dispatch]);
 
   const handleClick =  (e) => {
-    console.log("BUTTON DELETE WORKING?");
+  
     e.preventDefault()
     dispatch(removeAlbum(albumId))
     history.push('/deleted')

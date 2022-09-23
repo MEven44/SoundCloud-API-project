@@ -30,6 +30,7 @@ const AlbumInput = () => {
       imageUrl,
       
     };
+     
 
     const tune = await dispatch(createAlbumThunk(newAlbum));
     if (tune) history.push(`/albums`);
@@ -56,6 +57,7 @@ const AlbumInput = () => {
           value={title}
           placeholder="Title"
           name="title"
+          required="required"
         />
         
         <input

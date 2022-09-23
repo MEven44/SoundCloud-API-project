@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
-  console.log('NAVIGATION BAR SESSION USER', sessionUser)
+
   if (sessionUser) {
     sessionLinks = (
       <>

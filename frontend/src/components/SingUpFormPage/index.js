@@ -18,7 +18,7 @@ function SignupFormPage() {
 
   const history = useHistory()
 
-  console.log("LOGIN FORM SESSION USER", sessionUser)
+
 
   useEffect(() => {
     if (user) return history.push('/')

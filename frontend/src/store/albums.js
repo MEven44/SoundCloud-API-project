@@ -33,13 +33,13 @@ export const deleteAlbum = (id) => {
 export const fetchAlbums = () => async (dispatch) => {
   const response = await fetch("/api/albums");
   const albums = await response.json();
-  console.log("ALBUMS REDUCER GET ALL ALBUMS", albums);
+ 
   dispatch(loadAlbums(albums));
 };
 
 //post a song Thunk
 export const createAlbumThunk = (payload) => async (dispatch) => {
-  console.log("CREAT AlBUM THUNK", payload);
+
   
   const response = await csrfFetch("/api/albums", {
     method: "POST",
@@ -57,7 +57,7 @@ export const createAlbumThunk = (payload) => async (dispatch) => {
 //delete a song thunk
 
 export const removeAlbum = (id) => async (dispatch) => {
-  console.log("DELETE ALBUM THUNK", id);
+
 
   const response = await csrfFetch(`/api/albums/${+id}`, {
     method: "DELETE",
@@ -77,7 +77,7 @@ const albumReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALBUMS: {
       const newState = {...state, ...action.albums};
-      console.log('ALBUMS REDUCER STATE', newState)
+    
       
       newState.Albums.forEach((album) => {
       newState[album.id] = album;})
@@ -94,7 +94,7 @@ const albumReducer = (state = initialState, action) => {
 
     case DELETE_ALBUM: {
       const newState = {...state};
-      console.log('delete album', action.id)
+   
       delete newState[action.id]
       return newState;
     }

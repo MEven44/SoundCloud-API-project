@@ -18,7 +18,7 @@ useEffect(() => {
 
 
 
-console.log('HOME PAGE USE SELECTORE', songList)
+
     if (!songList) return null
     else
    return ( <div className='container'>

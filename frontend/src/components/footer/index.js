@@ -6,7 +6,7 @@ import './footer.css'
 
 function Footer () {
     const songPlayer = useSelector(state=>state.songs.currentSong)
-    console.log('FOOTER PLAYER STATE', songPlayer)
+   
 
 useEffect (()=>{
 
@@ -15,7 +15,7 @@ useEffect (()=>{
     if (!songPlayer) return null
 return (
   <div className="footer">
-    <ReactAudioPlayer src={songPlayer.url} autoPlay={true} controls={true} id='footer-player' onPlay={console.log('play footer')}/>
+    <ReactAudioPlayer src={songPlayer.url} autoPlay={true} controls={true} id='footer-player' />
   </div>
 );
 };

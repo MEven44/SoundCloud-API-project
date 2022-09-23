@@ -45,13 +45,13 @@ export const currentSong = (song) => {
 export const fetchSongs = () => async (dispatch) => {
   const response = await fetch("/api/songs");
   const data = await response.json();
-  console.log("SONGS REDUCER GET ALL SONGS", data.songs);
+ 
   dispatch(loadSongs(data.songs));
 };
 
 //post a song Thunk
 export const createSongThunk = (payload) => async (dispatch) => {
-  console.log("CREAT SONG THUNK", payload);
+  
   if (!payload.albumId) payload.albumId = null;
   const response = await csrfFetch("/api/songs", {
     method: "POST",
@@ -69,7 +69,7 @@ export const createSongThunk = (payload) => async (dispatch) => {
 //delete a song thunk
 
 export const removeSong = (id) => async (dispatch) => {
-  console.log("DELETE SONG THUNK", id);
+
 
   const response = await csrfFetch(`/api/songs/${+id}`, {
     method: "DELETE",
@@ -84,7 +84,7 @@ export const removeSong = (id) => async (dispatch) => {
 
 //edit song thunk
 export const editSongThunk = (song,songId) => async (dispatch) => {
-  console.log("EDIT SONG THUNK", song);
+
  
   const response = await csrfFetch(`/api/songs/${songId}`, {
     method: "PUT",
@@ -121,7 +121,7 @@ const songsReducer = (state = initialState, action) => {
     }
 
     case DELETE_SONG: {
-      console.log("DELETE reducer STATE", action.id);
+     
       const newState = {...state};
       return newState;
     }
@@ -129,7 +129,7 @@ const songsReducer = (state = initialState, action) => {
       const newState = {...state}
       newState.currentSong = action.song
       
-      console.log('CURRENT SONG STATE', newState)
+    
       return newState
       
     }
