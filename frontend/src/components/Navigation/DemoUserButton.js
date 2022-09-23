@@ -15,7 +15,7 @@ function DemoUser () {
     const handleClick = (e) => {
       e.preventDefault();
       setErrors([]);
-      return dispatch(sessionActions.demoLogin({ credential:'try22@gmail.com', password:'password' })).catch(
+      return dispatch(sessionActions.demoLogin({ credential:'musician@user.io', password:'password' })).catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
