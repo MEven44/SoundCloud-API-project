@@ -15,7 +15,7 @@ const user = require("../../db/models/user");
 
 router.get("/current", async (req, res) => {
   let { id } = req.user.dataValues;
-  console.log(req.user);
+ 
   const userPL = await Playlist.findAll({
     where: { userId: id },
   });
@@ -56,7 +56,7 @@ router.get('/:playlistId', async (req,res,next)=> {
     })
   
   
-console.log(Song)
+
   if (!playlist) {
     const err = new Error();
     err.message = "Couldn't find playlist";
@@ -64,7 +64,7 @@ console.log(Song)
     next(err)
   }else{
     
-    console.log(Song)
+   
     res.json(songs)
    
   }

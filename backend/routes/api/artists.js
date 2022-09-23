@@ -49,7 +49,7 @@ router.get('/:userId', async (req,res,next)=>{
 
 router.get("/:artistId/songs", async (req, res,next) => {
   let id = req.params.artistId;
-  console.log(id)
+
   let songById = await Song.findAll({ //getting all songs
     where: {userId:id},
   });

@@ -37,7 +37,7 @@ router.post("/",requireAuth,restoreUser, async (req, res) => {
 
 router.get("/current",requireAuth,restoreUser, async (req, res) => {
   let userId = req.user.dataValues.id;
-  console.log(userId);
+ 
   const userAlbums = await Album.findAll({
     where: { userId: userId },
   });
@@ -96,18 +96,18 @@ router.put("/:albumId", async (req, res) => {
 
 // delete an album
 
-router.delete("/:songId", async (req, res, next) => {
-  let id = req.params.songId;
-  let song = await Song.findByPk(id);
-  if (song) {
-    await song.destroy();
+router.delete("/:albumId", async (req, res, next) => {
+  let id = req.params.albumId;
+  let album = await Album.findByPk(id);
+  if (album) {
+    await album.destroy();
     res.json({
       message: "Successfully deleted",
       statusCode: 200,
     });
   } else {
     const err = new Error();
-    err.message = "song couldn't be found";
+    err.message = "Album couldn't be found";
     err.status = 404;
     next(err);
   }

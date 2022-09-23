@@ -62,7 +62,7 @@ router.get("/:songId", async (req, res, next) => {
   
    const { songId } = req.params;
 
-   console.log(songId);
+
    const oneSong = await Song.findByPk(songId, {
      include: [
        { model: User, as: 'Artist', attributes: ["id", "username","imageUrl"] },
@@ -166,6 +166,7 @@ router.post("/:songId/comments", requireAuth,restoreUser, async (req, res, next)
   }
 });
 
+//edit a song
 router.put("/:songId",requireAuth,restoreUser, async (req, res, next) => {
   let { songId } = req.params;
   let songToEdit = await Song.findAll({

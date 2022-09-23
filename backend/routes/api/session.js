@@ -53,7 +53,7 @@ router.post("/", validateLogin, async (req, res, next) => {
 router.get("/", restoreUser, (req, res) => {
   const { user } = req;
   if (user) {
-    console.log(user.toSafeObject())
+   
     return res.json({
      
       user: user.token = "",
