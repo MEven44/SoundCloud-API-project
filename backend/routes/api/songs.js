@@ -100,28 +100,28 @@ router.post("/", async (req, res, next) => {
     res.json(newSong);
   }
 
-  let albumCheck = await Album.findByPk(albumId);
-  if (albumCheck) {
-    newSong = await Song.create({
-      userId: req.user.dataValues.id,
-      title,
-      description,
-      url,
-      imageUrl,
-      albumId,
-    });
-    res.json(newSong);
-  } else {
-    let albumCheck = await Album.findOne({
-      where: { id: albumId },
-    });
-    if (!albumCheck) {
-      const err = new Error();
-      err.message = "Album couldn't be found";
-      err.status = 404;
-      next(err);
-    }
-  }
+  // let albumCheck = await Album.findByPk(albumId);
+  // if (albumCheck) {
+  //   newSong = await Song.create({
+  //     userId: req.user.dataValues.id,
+  //     title,
+  //     description,
+  //     url,
+  //     imageUrl,
+  //     albumId,
+  //   });
+  //   res.json(newSong);
+  // } else {
+  //   let albumCheck = await Album.findOne({
+  //     where: { id: albumId },
+  //   });
+  //   if (!albumCheck) {
+  //     const err = new Error();
+  //     err.message = "Album couldn't be found";
+  //     err.status = 404;
+  //     next(err);
+  //   }
+  // }
   next();
 });
 
