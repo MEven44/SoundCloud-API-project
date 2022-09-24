@@ -9,6 +9,7 @@ const {
   User,
   Comment,
 } = require("../../db/models");
+
 const user = require("../../db/models/user");
 const { restoreUser } = require("../../utils/auth.js");
 const { requireAuth } = require("../../utils/auth.js");
@@ -87,7 +88,9 @@ router.get("/:songId", async (req, res, next) => {
 
 
 router.post("/", async (req, res, next) => {
+  
   const { title, description, url, imageUrl, albumId } = req.body;
+ 
   if (albumId === null) {
     const newSong = await Song.create({
       userId: req.user.dataValues.id,
@@ -100,28 +103,30 @@ router.post("/", async (req, res, next) => {
     res.json(newSong);
   }
 
-  // let albumCheck = await Album.findByPk(albumId);
-  // if (albumCheck) {
-  //   newSong = await Song.create({
-  //     userId: req.user.dataValues.id,
-  //     title,
-  //     description,
-  //     url,
-  //     imageUrl,
-  //     albumId,
-  //   });
-  //   res.json(newSong);
-  // } else {
-  //   let albumCheck = await Album.findOne({
+  let albumCheck = await Album.findAll()
+ 
+  console.log("WHAT ABLBUM CHECK", albumCheck)
+  if (albumCheck) {
+    newSong = await Song.create({
+      userId: req.user.dataValues.id,
+      title,
+      description,
+      url,
+      imageUrl,
+      albumId,
+    });
+    res.json(newSong);
+  } else {
+  //  albumCheck = await Album.findOne({
   //     where: { id: albumId },
   //   });
   //   if (!albumCheck) {
-  //     const err = new Error();
-  //     err.message = "Album couldn't be found";
-  //     err.status = 404;
-  //     next(err);
-  //   }
-  // }
+      const err = new Error();
+      err.message = "Album couldn't be found";
+      err.status = 404;
+      next(err);
+    // }
+  }
   next();
 });
 
