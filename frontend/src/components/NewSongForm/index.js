@@ -66,7 +66,7 @@ const history = useHistory();
   return (
     <div className="inputBox">
       <h1>Your New Song</h1>
-      {error.length && error.map(error=>{
+      {error && error.map(error=>{
         return (<li id='errors' key={error}>{error}</li>)
       })}
       <form onSubmit={handleSubmit}>

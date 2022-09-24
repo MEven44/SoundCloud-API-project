@@ -6,6 +6,7 @@
   width:100%;
   height: 4rem;
   background-color: #c1caca;
+  z-index: 11;
 }
 
 audio::-webkit-media-controls-panel {

@@ -46,7 +46,7 @@ const AlbumInput = () => {
   return (
     <div className="inputBox">
       <h1>Create an album</h1>
-      {error.length &&
+      {error &&
         error.map((error) => {
           return <li id='errors' key={error}>{error}</li>;
         })}

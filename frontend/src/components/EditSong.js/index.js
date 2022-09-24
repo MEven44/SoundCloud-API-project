@@ -28,7 +28,7 @@ const EditSong = () => {
      if (!url || !url.includes('mp3')) errors.push('Please provide a valid url to the song')
 
      setErrorValidation(errors)
-    }, [dispatch,song]);  
+    }, [dispatch,song,title,url]);  
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,8 +58,8 @@ const EditSong = () => {
     return (
       <div className="inputBox">
         <h1>Edit your Song</h1>
-        {errorValidation.length && errorValidation.map(error=>
-        <li key={error}>{error}</li>)}
+        {errorValidation && errorValidation.map((error) => 
+        <li id='errors' key={error}>{error}</li>)}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -67,6 +67,7 @@ const EditSong = () => {
             value={title}
             placeholder="Title"
             name="Title"
+            required="required"
           />
           <input
             type="text"
@@ -74,6 +75,7 @@ const EditSong = () => {
             value={url}
             placeholder="Your song link"
             name="url"
+            required="required"
           />
           <input
             type="text"
@@ -96,7 +98,7 @@ const EditSong = () => {
             placeholder="Describe your song"
             rows="10"
           ></textarea>
-          <button type="submit">Submit</button>
+          <button id='new-song-btn'  type="submit">Submit</button>
         </form>
       </div>
     );

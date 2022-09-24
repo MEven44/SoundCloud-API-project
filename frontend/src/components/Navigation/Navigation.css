@@ -61,9 +61,9 @@
      box-sizing: border-box;
      max-width: 2em;
      max-height: 2em;
-     position:relative;
-     left: 64em;
-
+     position:sticky;
+     left:120em ;
+     z-index: 4;
 }
 .profile-dropdown {
     color:white;
@@ -72,9 +72,9 @@
     width: 16em;
     height: 16em;
     border: 2px solid black;
-    z-index: 10;
-    position: relative;
-    left: 35em;
+    z-index: 3;
+    position: sticky;
+    left: 90em;
 }
 
 
