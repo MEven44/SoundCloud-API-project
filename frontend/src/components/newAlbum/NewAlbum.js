@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/albums";
-
+import './NewAlbum.css'
 
 
 const AlbumInput = () => {
@@ -48,7 +48,7 @@ const AlbumInput = () => {
       <h1>Create an album</h1>
       {error.length &&
         error.map((error) => {
-          return <li key={error}>{error}</li>;
+          return <li id='errors' key={error}>{error}</li>;
         })}
       <form onSubmit={handleSubmit}>
         <input
@@ -75,7 +75,7 @@ const AlbumInput = () => {
           placeholder="The story of the album"
           rows="10"
         ></textarea>
-        <button type="submit">Submit</button>
+        <button id='new-album-btn' type="submit">Submit</button>
       </form>
     </div>
   );

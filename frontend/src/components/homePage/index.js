@@ -21,23 +21,25 @@ useEffect(() => {
 
     if (!songList) return null
     else
-   return ( <div className='container'>
-    {currentlist.map((song) => (
-        <div id="audio">
-          <NavLink id="song-title" to={`/songs/${song.id}`}>
-            {song.title}
-          </NavLink>
-          <img src={song.imageUrl} alt={song.title} id="main-song" />
-
-          <img 
-            id="play-btn"
-            src="https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png"
-            onClick={() => dispatch(currentSong(song))}
-           
-          />
-        </div>))}
-      </div>
-    );
+   return (
+     <div className="container">
+       {currentlist.map((song) => (
+         <div id="audio">
+           <NavLink id="song-title" to={`/songs/${song.id}`}>
+             {song.title}
+           </NavLink>
+           <NavLink to={`/songs/${song.id}`}>
+             <img src={song.imageUrl} alt={song.title} id="main-song" />
+           </NavLink>
+           <img
+             id="play-btn"
+             src="https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png"
+             onClick={() => dispatch(currentSong(song))}
+           />
+         </div>
+       ))}
+     </div>
+   );
     
 }
 

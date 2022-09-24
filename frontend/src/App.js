@@ -15,6 +15,7 @@ import Deleted from "./components/Deleted";
 import Albums from "./components/albums";
 import SingleAlbum from "./components/singleAlbum/SingleAlbum";
 import AlbumInput from "./components/newAlbum/NewAlbum";
+import Header from "./components/Navigation/Header-Image";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Header />
       <Footer />
       {isLoaded && (
         <Switch>

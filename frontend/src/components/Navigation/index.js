@@ -16,6 +16,15 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <NavLink id="navBar" exact to="/">
+          <div id="wrapper">
+            <img
+              src="https://media.glassdoor.com/sqll/4251457/on-the-stage-squarelogo-1607991007977.png"
+              alt="logo"
+              id="logo"
+            />
+          </div>
+        </NavLink>
+        <NavLink id="navBar" exact to="/">
           Home
         </NavLink>
         <NavLink id="navBar" to="/new-song">
@@ -27,26 +36,20 @@ function Navigation({ isLoaded }) {
         <NavLink id="navBar" to="/albums/new-album">
           New album
         </NavLink>
-        <ProfileButton id='profile-btn' user={sessionUser} />
+        <ProfileButton id="profile-btn" user={sessionUser} />
       </>
     );
   } else {
     sessionLinks = (
       <>
-        
-   
-         
             <NavLink id="navBar" to="/login">
               Log In
             </NavLink>
          
-          
             <NavLink id="navBar" to="/signup">
               Sign Up
             </NavLink>
           
-     
-
         <DemoUser></DemoUser>
       </>
     );

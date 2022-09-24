@@ -22,14 +22,22 @@
     top: 0px; left: 
     0px; 
     z-index: 1;
+    max-width:10em;
+    max-height:13em;
+    padding-top: 1em;
+    
 
 
 }
 
+img {
+    width: 100%;
+}
+
 #play-btn {
     position:absolute; 
-    top: 5em; 
-    left: 5em; 
+    top: 4em; 
+    left: 4em; 
     z-index: 3;
     object-fit:contain;
     box-sizing: border-box;
@@ -39,8 +47,10 @@
 
 #song-title {
     position:absolute; 
-    top: 0px; left: 
+    top: 11.3em; left: 
     0px; 
     z-index: 4;
     text-decoration: none;
+    color:rgb(154, 150, 150);
+    font-size: medium;
 }

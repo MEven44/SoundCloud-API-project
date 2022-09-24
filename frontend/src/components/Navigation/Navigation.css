@@ -3,9 +3,15 @@
     list-style: none;
     
 }
-
-.fa-user-circlefas{
- size: 17em;
+#wrapper{
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: -1.4em;
+    
+}
+#logo {
+    max-width:25%;
+    
 }
 #header {
     
@@ -18,6 +24,19 @@
     height: 60px;
     
     
+    
+}
+
+.header-img {
+    margin-top: -1em;
+    max-width: 100%;
+    max-height: auto;
+    background-repeat:repeat-x;
+}
+#up-image {
+
+    max-width: 100%;
+    
 }
 
 #navBar {
@@ -27,13 +46,25 @@
     flex-direction: row;
     align-items: center;
     box-sizing:bordered-box;
-    margin-right: 15px;
-    border-left: 4px solid black;
+    margin-right: 1em;
+    border-left: 0.15em solid black;
     height: 100%;
     text-decoration: none;
+    padding-left: 1em;
+    
+ 
 
 }
+#profile-btn{
+     
+     background-color: #5b5757;
+     box-sizing: border-box;
+     max-width: 2em;
+     max-height: 2em;
+     position:relative;
+     left: 64em;
 
+}
 .profile-dropdown {
     color:white;
     box-sizing: border-box;
@@ -43,10 +74,21 @@
     border: 2px solid black;
     z-index: 10;
     position: relative;
-    left: 20em;
-
+    left: 35em;
 }
 
+
+
+.fa-bars {
+    background-color: aliceblue;
+    
+}
+
+#Demo-user {
+    margin-top: 0.2em;
+    background-color: #5b5757;
+    color: whitesmoke
+}
 
 
 

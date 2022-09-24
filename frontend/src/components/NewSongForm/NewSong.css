@@ -1,0 +1,19 @@
+#new-song-btn {
+    position:relative;
+    bottom: 35em;
+    background-color: white;
+    width: 15em;
+    left: -15.4em;
+    bottom:33em;
+}
+
+#errors {
+    color:red;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 45.8em;
+    position:relative;
+    left: 1em;
+}

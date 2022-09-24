@@ -24,7 +24,10 @@ const SongInput = () => {
     if (!title) errors.push("Give your song a title")
     if (!url || !url.includes('.mp3')) errors.push("your song must have a valid url")
     setError(errors)
-  },[url,title])
+    console.log("WHAT ALBUM IS",+album)
+    console.log("WHAT ALBUM IS", 1);
+    console.log("WHAT ALBUM IS 1");
+  },[url,title,album])
 
 const history = useHistory();
 
@@ -36,7 +39,7 @@ const history = useHistory();
       description,
       url,
       imageUrl,
-      albumId: album
+      albumId:+album
       
     };
     if (title.length === 0) {
@@ -64,7 +67,7 @@ const history = useHistory();
     <div className="inputBox">
       <h1>Your New Song</h1>
       {error.length && error.map(error=>{
-        return (<li key={error}>{error}</li>)
+        return (<li id='errors' key={error}>{error}</li>)
       })}
       <form onSubmit={handleSubmit}>
         <input
@@ -89,7 +92,7 @@ const history = useHistory();
           name="image"
         />
         <input
-          type="text"
+          type="number"
           onChange={(e) => setAlbum(e.target.value)}
           value={album}
           placeholder="Album"
@@ -102,7 +105,7 @@ const history = useHistory();
           placeholder="Describe your song"
           rows="10"
         ></textarea>
-        <button type="submit">Submit</button>
+        <button id='new-song-btn' type="submit">Submit</button>
       </form>
     </div>
   );

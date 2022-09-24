@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../store/session'
@@ -24,7 +24,7 @@ function DemoUser () {
       );
     };
     
-    return <button onClick={handleClick}>Demo user</button>;
+    return <button id='Demo-user' onClick={handleClick}>Demo user</button>;
 }
 
 export default DemoUser

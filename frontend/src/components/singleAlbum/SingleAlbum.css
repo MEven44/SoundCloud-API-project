@@ -1,0 +1,33 @@
+#single-album {
+    display: flex;
+    flex-direction: row;
+}
+
+#column-container {
+    display: flex;
+    flex-direction: column;
+}
+#single-album-btn {
+    margin-top:3em;
+    background-color: white;
+    max-width: fit-content;
+   
+}
+#description{
+    margin:1em;
+}
+
+#album-img {
+    margin: 1em;
+}
+
+#album-songs{
+    border-left: 2px solid rgb(154, 149, 149);
+    box-sizing: border-box;
+    position:relative;
+    top:2em;
+    padding-left:1em;
+}
+#album-songs-li {
+    color: gray;
+}

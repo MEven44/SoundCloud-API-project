@@ -31,6 +31,7 @@ function SingleSong(){
 
     if (!songs) return null
     return (
+      <div id='container'>
       <div id="audio">
         <h2 id="song-title">{songs[songId].title}</h2>
         <img
@@ -54,6 +55,8 @@ function SingleSong(){
         <button id="delete-song" onClick={handleClick}>
           Delete this song
         </button>
+      </div>
+      <div id='description'>{songs[songId].description}</div>
       </div>
     );
 

@@ -1,15 +1,18 @@
- #song-title {
+
+
+/* #song-title {
    color:white;
    background-color: black;
    font-size: large;
- }
+ } */
  
- img {
+img {
   position:relative;
   display: block;
   max-width:13em;
   max-height:13em;
   padding-top: 1em;
+
   
 }
 
