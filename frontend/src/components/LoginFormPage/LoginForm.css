@@ -34,5 +34,7 @@ input {
 #form {
     position:relative;
     left: 10em;
+    max-width: 70%;
+    margin-right:6em;
 
 }
