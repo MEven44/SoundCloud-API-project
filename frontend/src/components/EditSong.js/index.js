@@ -56,7 +56,7 @@ const EditSong = () => {
     
     if (!song[songId]) return null
     return (
-      <div className="inputBox">
+      <div id='form' className="inputBox">
         <h1>Edit your Song</h1>
         {errorValidation && errorValidation.map((error) => 
         <li id='errors' key={error}>{error}</li>)}

@@ -42,13 +42,13 @@ function SingleAlbum() {
       <button id="single-album-btn" onClick={handleClick}>
         Delete this album
       </button>
-      <div id="description">{albums[albumId].description}</div>
+      <div id="description-album">{albums[albumId].description}</div>
       </div>
       <div id='album-songs'>Songs list:
         {AlbumSongs.map(albumSong=>{
           return (
             
-            <li key='albumSong.id' id='album-songs-li' onClick={()=>history.push(`/songs/${albumSong.id}`)}>{albumSong.title}</li>
+            <li key='albumSong.id' className='album-songs-li' onClick={()=>history.push(`/songs/${albumSong.id}`)}>{albumSong.title}</li>
           )
         }) }     
         </div>

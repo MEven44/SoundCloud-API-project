@@ -14,7 +14,7 @@ function Albums() {
 
   if (!albumsList) return null;
   else
-    return (<div className='container'>
+    return (<div id='form' className='container'>
     {Object.values(albumsList).map((album) => (
       <div  id="album">
         <NavLink to={`/albums/${+album.id}`}>

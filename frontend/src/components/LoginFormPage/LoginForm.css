@@ -21,3 +21,18 @@ input {
     display: flex;
     flex-direction: row;
 }
+
+#login-btn {
+    background-color: rgba(35, 92, 225, 0.914);
+    position: relative;
+    height: 4em;
+    left: 38.3em;
+    width: 8em;
+
+}
+
+#form {
+    position:relative;
+    left: 10em;
+
+}

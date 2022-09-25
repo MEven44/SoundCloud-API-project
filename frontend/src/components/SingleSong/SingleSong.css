@@ -12,9 +12,10 @@ img {
   max-width:13em;
   max-height:13em;
   padding-top: 1em;
+}
 
   
-}
+
 
 #delete-song {
    position: absolute;
@@ -34,4 +35,15 @@ img {
    max-height: 1.7em;
    background-color: white;
 
+}
+
+#description{
+   position:relative;
+   box-sizing: border-box;
+   border: 1px solid gainsboro;
+   top:2em;
+   left: 5em;
+   height: 16em;
+   width:33em;
+   color: dark rgb(146, 138, 138);
 }

@@ -34,7 +34,7 @@ function SignupFormPage() {
         ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-        history.push("/");
+        history.push("/welcome");
       });
     
     }
@@ -44,7 +44,7 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id='form' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -106,7 +106,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button id='signup-btn' type="submit">Sign Up</button>
     </form>
   );
 }

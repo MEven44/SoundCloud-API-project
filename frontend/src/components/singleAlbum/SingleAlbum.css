@@ -14,7 +14,7 @@
     margin-right: 0.5em;
    
 }
-#description{
+#description-album{
     margin:1em;
 }
 
@@ -29,6 +29,12 @@
     top:2em;
     padding-left:1em;
 }
-#album-songs-li {
+.album-songs-li {
     color: gray;
+    background-color: white;
+}
+
+.album-songs-li:hover {
+    background-color: gray;
+    color:white;
 }

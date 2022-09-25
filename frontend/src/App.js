@@ -16,6 +16,7 @@ import Albums from "./components/albums";
 import SingleAlbum from "./components/singleAlbum/SingleAlbum";
 import AlbumInput from "./components/newAlbum/NewAlbum";
 import Header from "./components/Navigation/Header-Image";
+import Welcome from "./components/WelcomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/welcome'>
+            <Welcome />
           </Route>
           <Route path='/new-song'>
             <SongInput />

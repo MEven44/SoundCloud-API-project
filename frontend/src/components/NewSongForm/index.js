@@ -64,7 +64,7 @@ const history = useHistory();
   };
 
   return (
-    <div className="inputBox">
+    <div id='form' className="inputBox">
       <h1>Your New Song</h1>
       {error && error.map(error=>{
         return (<li id='errors' key={error}>{error}</li>)

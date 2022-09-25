@@ -56,7 +56,7 @@ function SingleSong(){
           Delete this song
         </button>
       </div>
-      <div id='description'>{songs[songId].description}</div>
+      <div id='description'>Description: {songs[songId].description}</div>
       </div>
     );
 

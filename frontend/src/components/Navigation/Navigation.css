@@ -64,6 +64,7 @@
      position:sticky;
      left:120em ;
      z-index: 4;
+     margin: 1em;
 }
 .profile-dropdown {
     color:white;
@@ -75,6 +76,7 @@
     z-index: 3;
     position: sticky;
     left: 90em;
+    line-height: 2.5;
 }
 
 
@@ -88,6 +90,11 @@
     margin-top: 0.2em;
     background-color: #5b5757;
     color: whitesmoke
+}
+
+#logout-btn {
+    background-color: rgba(35, 92, 225, 0.914);
+    color:white;
 }
 
 
