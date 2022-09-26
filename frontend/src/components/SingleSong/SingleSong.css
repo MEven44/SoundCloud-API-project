@@ -41,8 +41,8 @@ img {
    position:relative;
    box-sizing: border-box;
    border: 1px solid gainsboro;
-   top:2em;
-   left: 5em;
+   top:-12em;
+   left: 18em;
    height: 16em;
    width:33em;
    color: dark rgb(146, 138, 138);
