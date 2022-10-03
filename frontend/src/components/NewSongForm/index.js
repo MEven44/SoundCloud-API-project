@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from '../../store/songs'
-
+import { useSelector } from "react-redux";
+import { fetchAlbums } from "../../store/albums";
 
 import './NewSong.css';
 
@@ -18,18 +19,22 @@ const SongInput = () => {
   const [error,setError] = useState([])
   const dispatch = useDispatch();
 
+   
+
+    useEffect(() => {
+      dispatch(fetchAlbums());
+    }, [dispatch]);
 
   useEffect(()=>{
     let errors =[]
     if (!title) errors.push("Give your song a title")
     if (!url || !url.includes('.mp3')) errors.push("your song must have a valid url")
     setError(errors)
-    console.log("WHAT ALBUM IS",+album)
-    console.log("WHAT ALBUM IS", 1);
-    console.log("WHAT ALBUM IS 1");
+    
   },[url,title,album])
 
 const history = useHistory();
+const albums = useSelector(state=>state.albums.Albums)
 
   const handleSubmit = async (e) => {
     let errors = []
@@ -64,11 +69,16 @@ const history = useHistory();
   };
 
   return (
-    <div id='form' className="inputBox">
+    <div id="form" className="inputBox">
       <h1>Your New Song</h1>
-      {error && error.map(error=>{
-        return (<li id='errors' key={error}>{error}</li>)
-      })}
+      {error &&
+        error.map((error) => {
+          return (
+            <li id="errors" key={error}>
+              {error}
+            </li>
+          );
+        })}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -91,21 +101,46 @@ const history = useHistory();
           placeholder="make it pretty"
           name="image"
         />
-        <input
-          type="number"
-          onChange={(e) => setAlbum(e.target.value)}
-          value={album}
-          placeholder="Album"
-          name="Album"
-        />
+        <div id="album-conteiner">
+          <p id='album-conteiner-title'>Choose an album (if you have one) to your song</p>
+          <div id="albums-selector">
+            <input
+              type="radio"
+              onChange={(e) => setAlbum(e.target.value)}
+              value={null}
+              id="single-album"
+              name="no-Album"
+            />
+            <label id="single-album" for="null">
+              No album related
+            </label>
+          </div>
+          {albums?.map((album) => (
+            <div id="albums-selector">
+              <input
+                type="radio"
+                onChange={(e) => setAlbum(e.target.value)}
+                value={album.title}
+                id="single-album"
+                name="Album"
+              />
+              <label id="single-album" for={album.title}>
+                {album.title}
+              </label>
+            </div>
+          ))}
+        </div>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           name="Description"
           placeholder="Describe your song"
           rows="10"
+          id="new-song-description"
         ></textarea>
-        <button id='new-song-btn' type="submit">Submit</button>
+        <button id="new-song-btn" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -1,10 +1,16 @@
 #new-song-btn {
-    position:relative;
-    bottom: 35em;
+    vertical-align: top;
     background-color: white;
     width: 15em;
-    left:31em;
-    bottom:30em;
+    position: relative;
+    bottom: 33em;
+    right: 14em;
+    
+   
+}
+
+h1 {
+    max-width: 10em;
 }
 
 #errors {
@@ -16,5 +22,30 @@ textarea {
     width: 45.8em;
     position:relative;
     left: 1em;
+    top:3em;
 }
+#albums-selector {
+    display: flex;
+    flex-direction: row;
 
+}
+ #single-album {
+    box-sizing: border-box;
+    width: 8em;
+    align-items: center;
+
+ }
+
+ #album-conteiner {
+    box-sizing: border-box;
+    display: flex;
+    height: fit-content;
+    flex-wrap: wrap;
+    max-width: 40em;
+ }
+#album-conteiner-title{
+    box-sizing: border-box;
+    width: 35em;
+    color: gray;
+}
+ 

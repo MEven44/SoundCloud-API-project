@@ -1,6 +1,5 @@
 import {useSelector , useDispatch} from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import ReactAudioPlayer from "react-audio-player";
 import {removeSong, fetchSongs} from '../../store/songs'
 import {useEffect} from 'react'
 import { currentSong } from '../../store/songs';
