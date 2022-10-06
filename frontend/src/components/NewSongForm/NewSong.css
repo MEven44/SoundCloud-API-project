@@ -1,10 +1,14 @@
+#form {
+    position:relative;
+}
+
 #new-song-btn {
     vertical-align: top;
     background-color: white;
     width: 15em;
-    position: relative;
-    bottom: 33em;
-    right: 14em;
+    position: absolute;
+    bottom: 42em;
+    left: 31.5em;
     
    
 }
