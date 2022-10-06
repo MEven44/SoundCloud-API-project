@@ -1,4 +1,7 @@
-
+#container{
+   position: relative;
+   display:flex;
+}
 
 /* #song-title {
    color:white;
@@ -38,10 +41,10 @@ img {
 }
 
 #description{
-   position:relative;
+   position:absolute;
    box-sizing: border-box;
    border: 1px solid gainsboro;
-   top:-12em;
+   top:30px;
    left: 18em;
    height: 16em;
    width:33em;
