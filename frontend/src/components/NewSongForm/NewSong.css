@@ -54,4 +54,13 @@ textarea {
     width: 35em;
     color: gray;
 }
+
+#album-select {
+    box-sizing: border-box;
+    width: 95%;
+    margin-left:2%;
+    margin-top:3%;
+    height: 3em;
+    color: gray;
+}
  

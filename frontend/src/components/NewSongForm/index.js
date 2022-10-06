@@ -79,6 +79,7 @@ const albums = useSelector(state=>state.albums.Albums)
             </li>
           );
         })}
+      {console.log("new song album", album)}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -102,25 +103,26 @@ const albums = useSelector(state=>state.albums.Albums)
           name="image"
         />
         <div id="album-conteiner">
-          <p id='album-conteiner-title'>Choose an album (if you have one) to your song</p>
-          <div id="albums-selector">
-            <input
-              type="radio"
-              onChange={(e) => setAlbum(e.target.value)}
-              value={null}
-              id="single-album"
-              name="no-Album"
-            />
-            <label id="single-album" for="null">
-              No album related
-            </label>
-          </div>
+          <label for="album-select">Choose an album:</label>
+
+          <select name="albums" id="album-select">
+            <option value="">Choose an album if you have one</option>
+            {albums?.map((album) => (
+            <option value="album.title">{album.title}</option>
+            ))}
+          </select>
+        </div>
+        {/* <p id="album-conteiner-title">
+            Choose an album (if you have one) to your song
+          </p>
+
           {albums?.map((album) => (
             <div id="albums-selector">
               <input
                 type="radio"
                 onChange={(e) => setAlbum(e.target.value)}
                 value={album.title}
+                // checked={album===null?false:true}
                 id="single-album"
                 name="Album"
               />
@@ -129,7 +131,20 @@ const albums = useSelector(state=>state.albums.Albums)
               </label>
             </div>
           ))}
-        </div>
+          <div id="albums-selector">
+            <input
+              type="radio"
+              onChange={(e) => setAlbum(null)}
+              value={null}
+              id="single-album"
+              checked={album !== null? false : true}
+              name="no-Album"
+            />
+            <label id="single-album" for="null">
+              No album related
+            </label>
+          </div>
+        </div> */}
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
