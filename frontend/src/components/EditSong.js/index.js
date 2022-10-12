@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams,useHistory} from "react-router-dom";
 import { editSongThunk } from "../../store/songs";
 import { fetchSongs } from "../../store/songs";
+import { fetchAlbums } from "../../store/albums";
 import "../NewSongForm/NewSong.css";
 
 const EditSong = () => {
@@ -20,7 +21,13 @@ const EditSong = () => {
   const [errorValidation, setErrorValidation] = useState([])
   const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(fetchAlbums())
+    dispatch(fetchSongs());
+  }, [dispatch]);
+
   const history = useHistory()
+  const albums = useSelector((state) => state.albums.Albums);
 
     useEffect(() => {
       let errors =[]
@@ -38,7 +45,7 @@ const EditSong = () => {
             description,
             url,
             imageUrl,
-            albumId: album,
+            albumId: +album,
         };
          
         
@@ -56,10 +63,14 @@ const EditSong = () => {
     
     if (!song[songId]) return null
     return (
-      <div id='form' className="inputBox">
+      <div id="form" className="inputBox">
         <h1>Edit your Song</h1>
-        {errorValidation && errorValidation.map((error) => 
-        <li id='errors' key={error}>{error}</li>)}
+        {errorValidation &&
+          errorValidation.map((error) => (
+            <li id="errors" key={error}>
+              {error}
+            </li>
+          ))}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -84,13 +95,16 @@ const EditSong = () => {
             placeholder="make it pretty"
             name="image"
           />
-          <input
-            type="text"
-            onChange={(e) => setAlbum(e.target.value)}
-            value={album}
-            placeholder="Album"
-            name="Album"
-          />
+          <div id="album-conteiner">
+            <label for="album-select">Choose an album:</label>
+
+            <select name="albums" id="album-select">
+              <option value="">Choose an album if you have one</option>
+              {albums?.map((album) => (
+                <option value="album.title">{album.title}</option>
+              ))}
+            </select>
+          </div>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -98,7 +112,9 @@ const EditSong = () => {
             placeholder="Describe your song"
             rows="10"
           ></textarea>
-          <button id='new-song-btn'  type="submit">Submit</button>
+          <button id="new-song-btn" type="submit" disabled={!!errorValidation.length}>
+            Submit
+          </button>
         </form>
       </div>
     );

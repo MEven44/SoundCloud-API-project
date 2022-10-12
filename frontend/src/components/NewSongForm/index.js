@@ -115,39 +115,7 @@ const albums = useSelector(state=>state.albums.Albums)
             ))}
           </select>
         </div>
-        {/* <p id="album-conteiner-title">
-            Choose an album (if you have one) to your song
-          </p>
-
-          {albums?.map((album) => (
-            <div id="albums-selector">
-              <input
-                type="radio"
-                onChange={(e) => setAlbum(e.target.value)}
-                value={album.title}
-                // checked={album===null?false:true}
-                id="single-album"
-                name="Album"
-              />
-              <label id="single-album" for={album.title}>
-                {album.title}
-              </label>
-            </div>
-          ))}
-          <div id="albums-selector">
-            <input
-              type="radio"
-              onChange={(e) => setAlbum(null)}
-              value={null}
-              id="single-album"
-              checked={album !== null? false : true}
-              name="no-Album"
-            />
-            <label id="single-album" for="null">
-              No album related
-            </label>
-          </div>
-        </div> */}
+       
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
