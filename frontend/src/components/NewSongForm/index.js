@@ -87,6 +87,7 @@ const albums = useSelector(state=>state.albums.Albums)
           value={title}
           placeholder="Title"
           name="title"
+          required
         />
         <input
           type="text"
@@ -94,6 +95,7 @@ const albums = useSelector(state=>state.albums.Albums)
           value={url}
           placeholder="Your song link"
           name="url"
+          required
         />
         <input
           type="text"
@@ -101,6 +103,7 @@ const albums = useSelector(state=>state.albums.Albums)
           value={imageUrl}
           placeholder="make it pretty"
           name="image"
+          required
         />
         <div id="album-conteiner">
           <label for="album-select">Choose an album:</label>
@@ -153,7 +156,7 @@ const albums = useSelector(state=>state.albums.Albums)
           rows="10"
           id="new-song-description"
         ></textarea>
-        <button id="new-song-btn" type="submit">
+        <button id="new-song-btn" type="submit" disabled={!!error.length}>
           Submit
         </button>
       </form>

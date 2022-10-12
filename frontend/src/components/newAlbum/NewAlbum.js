@@ -66,6 +66,7 @@ const AlbumInput = () => {
           value={imageUrl}
           placeholder="make it pretty"
           name="image"
+          required="required"
         />
        
         <textarea
@@ -75,7 +76,7 @@ const AlbumInput = () => {
           placeholder="The story of the album"
           rows="10"
         ></textarea>
-        <button id='new-album-btn' type="submit">Submit</button>
+        <button id='new-album-btn' type="submit" disabled={!!error.length}>Submit</button>
       </form>
     </div>
   );

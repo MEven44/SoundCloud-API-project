@@ -27,10 +27,14 @@
     max-width:10em;
     max-height:13em;
     padding-top: 1em;
-    
+    transition: all 0.5s ease-out;
 
 
 }
+
+/* #main-song:hover {
+    box-shadow: 6px 6px 2px 1px rgba(103, 103, 111, 0.2);
+} */
 
 img {
     width: 100%;
@@ -45,6 +49,13 @@ img {
     box-sizing: border-box;
     max-height: 3em;
     max-width: 3em;
+    filter: grayscale(100%);
+    transition: all 0.5s ease-out;
+}
+
+#play-btn:hover{
+  filter: grayscale(0%);
+    
 }
 
 #song-title {
