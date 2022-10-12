@@ -16,8 +16,8 @@ const EditSong = () => {
   const [title, setTitle] = useState(song[songId].title);
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState(song[songId].url);
-  const [imageUrl, setImageUrl] = useState('');
-  const [album, setAlbum] = useState('');
+  const [imageUrl, setImageUrl] = useState(song[songId].imageUrl);
+  const [album, setAlbum] = useState(song[songId].album);
   const [errorValidation, setErrorValidation] = useState([])
   const dispatch = useDispatch();
   
