@@ -6,7 +6,7 @@ import { Redirect, useHistory } from "react-router-dom";
 
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user); //I removed .user from state.session
   const [credential, setCredential] = useState("");
@@ -61,4 +61,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginFormPage;

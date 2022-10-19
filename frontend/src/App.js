@@ -16,7 +16,7 @@ import SingleAlbum from "./components/singleAlbum/SingleAlbum";
 import AlbumInput from "./components/newAlbum/NewAlbum";
 import Header from "./components/Navigation/Header-Image";
 import Welcome from "./components/WelcomePage";
-import LoginFormModal from "./components/LoginFormModal";
+import LoginFormPage from "./components/LoginFormPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,9 +39,9 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-          {/* <Route path="/login">
-            <LoginFormModal />
-          </Route> */}
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
