@@ -79,7 +79,7 @@ const albums = useSelector(state=>state.albums.Albums)
             </li>
           );
         })}
-      {console.log("new song album", album)}
+    
       <form onSubmit={handleSubmit}>
         <input
           type="text"

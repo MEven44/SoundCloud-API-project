@@ -77,12 +77,8 @@ const albumReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALBUMS: {
       const newState = {...state, ...action.albums};
-    
-      
       newState.Albums.forEach((album) => {
       newState[album.id] = album;})
-      
-
       return newState;
     }
     case CREATE_ALBUM: {
