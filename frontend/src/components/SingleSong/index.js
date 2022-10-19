@@ -32,11 +32,11 @@ function SingleSong(){
     return (
       <div id='container'>
       <div id="audio">
-        <h2 id="song-title">{songs[songId].title}</h2>
+        <h2 id="song-title">{songs[songId]?.title}</h2>
         <img
           id="main-song"
-          src={songs[songId].imageUrl}
-          alt={songs[songId].title}
+          src={songs[songId]?.imageUrl}
+          alt={songs[songId]?.title}
         />
         <div>
           <img
@@ -55,7 +55,7 @@ function SingleSong(){
           Delete this song
         </button>
       </div>
-      <div id='description'>Description: {songs[songId].description}</div>
+      <div id='description'>Description: {songs[songId]?.description}</div>
       </div>
     );
 
