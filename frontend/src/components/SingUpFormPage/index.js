@@ -12,42 +12,47 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const[user, setUser] = useState(sessionUser);
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
 
+
   const history = useHistory()
-
-
-
+  
+  
   useEffect(() => {
-    if (user) return history.push('/')
-  }, [sessionUser]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    let errorValidation = []
+    if (username.length < 4) errorValidation.push('Please provide a username with at least 4 characters')
+    if (password.length < 6) errorValidation.push("Password must be 6 characters or more");
+    if (!email.includes('@')) errorValidation.push('Please provide a valid email')
+    if (username.includes('@')) errorValidation.push('User name cannot be email')
+    if (password !== confirmPassword) errorValidation.push('You got a wrong password confirmation')
     
+    setErrors(errorValidation)
+  }, [sessionUser, username, password, email,confirmPassword]);
+  
+  if (sessionUser)  history.push('/');
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(
-        sessionActions.signup({ email, username,firstName,lastName, password })
+      
+      const response =  await dispatch(
+        sessionActions.signup({ email,username,firstName,lastName,password })
         ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-        history.push("/welcome");
-      });
-    
-    }
-    return setErrors([
-      "Confirm Password field must be the same as the Password field",
-    ]);
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
+        
+      
+    } 
   };
 
   return (
     <form id='form' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li key={idx} id="errors">{error}</li>
         ))}
       </ul>
       <label>
@@ -106,7 +111,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button id='signup-btn' type="submit">Sign Up</button>
+      <button id='signup-btn' type="submit" disabled={!!errors.length}>Sign Up</button>
     </form>
   );
 }

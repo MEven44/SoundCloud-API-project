@@ -20,10 +20,10 @@ input {
     position: relative;
     left: 48em;
     bottom: 5em;
-    background-color: rgba(35, 92, 225, 0.914);
+    background-color:white;
     margin-top: 1em;
     height: 3em;
-
+   
     /* max-width: 50px; */
 }
 

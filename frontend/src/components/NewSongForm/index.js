@@ -15,7 +15,7 @@ const SongInput = () => {
   const [description, setDescription] = useState("");
   const [url,setUrl] = useState ('')
   const [imageUrl, setImageUrl] = useState("");
-  const [album,setAlbum] = useState(null)
+  const [albumId,setAlbumId] = useState(null)
   const [error,setError] = useState([])
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const SongInput = () => {
     if (!url || !url.includes('.mp3')) errors.push("your song must have a valid url")
     setError(errors)
     
-  },[url,title,album])
+  },[url,title,albumId])
 
 const history = useHistory();
 const albums = useSelector(state=>state.albums.Albums)
@@ -44,7 +44,7 @@ const albums = useSelector(state=>state.albums.Albums)
       description,
       url,
       imageUrl,
-      albumId:+album
+      albumId:+albumId
       
     };
     if (title.length === 0) {
@@ -65,7 +65,7 @@ const albums = useSelector(state=>state.albums.Albums)
     setDescription('');
     setUrl('')
     setImageUrl("");
-    setAlbum("");
+    setAlbumId("");
   };
 
   return (
@@ -108,10 +108,10 @@ const albums = useSelector(state=>state.albums.Albums)
         <div id="album-conteiner">
           <label for="album-select">Choose an album:</label>
 
-          <select name="albums" id="album-select">
+          <select name="albums" id="album-select" onChange={e=>setAlbumId(e.target.value)}>
             <option value="">Choose an album if you have one</option>
             {albums?.map((album) => (
-            <option value="album.title">{album.title}</option>
+            <option value={album.id}>{album.title}</option>
             ))}
           </select>
         </div>

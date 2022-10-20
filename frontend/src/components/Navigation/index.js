@@ -7,8 +7,9 @@ import DemoUser from "./DemoUserButton";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-
+  console.log("NAVIGATION BAR SESSION USER", sessionUser)
   let sessionLinks;
+  
 
   if (sessionUser) {
     sessionLinks = (
