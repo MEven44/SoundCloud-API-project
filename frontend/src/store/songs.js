@@ -49,7 +49,7 @@ export const fetchSongs = () => async (dispatch) => {
   dispatch(loadSongs(data.songs));
 };
 
-//post a song Thunk
+//create a song Thunk
 export const createSongThunk = (payload) => async (dispatch) => {
   
   if (!payload.albumId) payload.albumId = null;
@@ -76,7 +76,7 @@ export const removeSong = (id) => async (dispatch) => {
   });
 
   if (response.ok) {
-    // const song = await response.json();
+    
     dispatch(deleteSong(+id));
     return response;
   }
@@ -98,7 +98,7 @@ export const editSongThunk = (song,songId) => async (dispatch) => {
     return song;
   }
 };
-const initialState = { songList: [] }; //???
+const initialState = { songList: [] }; 
 
 const songsReducer = (state = initialState, action) => {
   switch (action.type) {

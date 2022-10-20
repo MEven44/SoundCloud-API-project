@@ -1,6 +1,3 @@
-// {  title, description, url, imageUrl, albumId;}
-
-
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -79,7 +76,7 @@ const albums = useSelector(state=>state.albums.Albums)
             </li>
           );
         })}
-    
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -93,7 +90,7 @@ const albums = useSelector(state=>state.albums.Albums)
           type="text"
           onChange={(e) => setUrl(e.target.value)}
           value={url}
-          placeholder="Your song link"
+          placeholder="Please provide a song url"
           name="url"
           required
         />
@@ -101,21 +98,25 @@ const albums = useSelector(state=>state.albums.Albums)
           type="text"
           onChange={(e) => setImageUrl(e.target.value)}
           value={imageUrl}
-          placeholder="make it pretty"
+          placeholder="Please provide an image url"
           name="image"
           required
         />
         <div id="album-conteiner">
           <label for="album-select">Choose an album:</label>
 
-          <select name="albums" id="album-select" onChange={e=>setAlbumId(e.target.value)}>
+          <select
+            name="albums"
+            id="album-select"
+            onChange={(e) => setAlbumId(e.target.value)}
+          >
             <option value="">Choose an album if you have one</option>
             {albums?.map((album) => (
-            <option value={album.id}>{album.title}</option>
+              <option value={album.id}>{album.title}</option>
             ))}
           </select>
         </div>
-       
+
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}

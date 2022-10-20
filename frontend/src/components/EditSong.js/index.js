@@ -14,7 +14,7 @@ const EditSong = () => {
 
   
   const [title, setTitle] = useState(song[songId].title);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState(song[songId].description);
   const [url, setUrl] = useState(song[songId].url);
   const [imageUrl, setImageUrl] = useState(song[songId].imageUrl);
   const [album, setAlbum] = useState(song[songId].album);
@@ -40,7 +40,6 @@ const EditSong = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newSong = {
-           
             title,
             description,
             url,
@@ -84,7 +83,7 @@ const EditSong = () => {
             type="text"
             onChange={(e) => setUrl(e.target.value)}
             value={url}
-            placeholder="Your song link"
+            placeholder="Please provide a song url"
             name="url"
             required="required"
           />
@@ -92,16 +91,20 @@ const EditSong = () => {
             type="text"
             onChange={(e) => setImageUrl(e.target.value)}
             value={imageUrl}
-            placeholder="make it pretty"
+            placeholder="Please provide an image url"
             name="image"
           />
           <div id="album-conteiner">
             <label for="album-select">Choose an album:</label>
 
-            <select name="albums" id="album-select">
-              <option value="">Choose an album if you have one</option>
+            <select
+              name="albums"
+              id="album-select"
+              onChange={(e) => setAlbum(e.target.value)}
+            >
+              <option value={album}>Choose an album if you have one</option>
               {albums?.map((album) => (
-                <option value="album.title">{album.title}</option>
+                <option value={album.id}>{album.title}</option>
               ))}
             </select>
           </div>
@@ -112,7 +115,11 @@ const EditSong = () => {
             placeholder="Describe your song"
             rows="10"
           ></textarea>
-          <button id="new-song-btn" type="submit" disabled={!!errorValidation.length}>
+          <button
+            id="new-song-btn"
+            type="submit"
+            disabled={!!errorValidation.length}
+          >
             Submit
           </button>
         </form>
