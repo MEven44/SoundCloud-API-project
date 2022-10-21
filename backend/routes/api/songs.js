@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
   let pagination = {};
   if (page >= 1 && size >= 1) {
     if (size > 10) {
-      size = 10;
+      size = 20;
     }
     pagination.limit = size;
     pagination.offset = size * (page - 1);
@@ -84,9 +84,7 @@ router.get("/:songId", async (req, res, next) => {
 });
 
 
-//create a song (was wanting to add a unique url tho the tests wont allow it)
-
-
+//create a song 
 router.post("/", async (req, res, next) => {
   
   const { title, description, url, imageUrl, albumId } = req.body;
@@ -105,7 +103,6 @@ router.post("/", async (req, res, next) => {
 
   let albumCheck = await Album.findAll()
  
-  console.log("WHAT ABLBUM CHECK", albumCheck)
   if (albumCheck) {
     newSong = await Song.create({
       userId: req.user.dataValues.id,
@@ -179,14 +176,14 @@ router.put("/:songId",requireAuth,restoreUser, async (req, res, next) => {
     
   });
   if (songToEdit.length) {
-    const { title, description, url, imageUrl } = req.body;
+    const { title, description, url,imageUrl,albumId } = req.body;
     songToEdit[0].set({
      
       title,
       description,
       url,
       imageUrl,
-      
+      albumId
     });
     await songToEdit[0].save();
     let updatedSong = await Song.findByPk(songId)
