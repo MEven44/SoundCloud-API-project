@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./profileButton";
 import "./Navigation.css";
 import DemoUser from "./DemoUserButton";
+import MyLinks from "./myLinks";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -36,6 +37,7 @@ function Navigation({ isLoaded }) {
         <NavLink id="navBar" to="/albums/new-album">
           New album
         </NavLink>
+       
         <ProfileButton id="profile-btn" user={sessionUser} />
       </>
     );
@@ -60,6 +62,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
 
         <DemoUser></DemoUser>
+
       </>
     );
   }
