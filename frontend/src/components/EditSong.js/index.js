@@ -44,7 +44,7 @@ const EditSong = () => {
             description,
             url,
             imageUrl,
-            // albumId: +album,
+            albumId: +album,
         };
          
         
@@ -94,7 +94,7 @@ const EditSong = () => {
             placeholder="Please provide an image url"
             name="image"
           />
-          {/* <div id="album-conteiner">
+          <div id="album-conteiner">
             <label for="album-select">Choose an album:</label>
 
             <select
@@ -102,12 +102,12 @@ const EditSong = () => {
               id="album-select"
               onChange={(e) => setAlbum(e.target.value)}
             >
-              <option value={album}>Choose an album if you have one</option>
+              <option value="">Choose an album if you have one</option>
               {albums?.map((album) => (
                 <option value={album.id}>{album.title}</option>
               ))}
             </select>
-          </div> */}
+          </div>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
