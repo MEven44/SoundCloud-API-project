@@ -116,7 +116,7 @@ const EditSong = () => {
             rows="10"
           ></textarea>
           <button
-            id="new-song-btn"
+            id="edit-song-btn"
             type="submit"
             disabled={!!errorValidation.length}
           >

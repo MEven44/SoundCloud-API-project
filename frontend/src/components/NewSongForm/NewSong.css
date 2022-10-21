@@ -7,12 +7,19 @@
     background-color: white;
     width: 15em;
     position: absolute;
-    bottom: 26em;
+    bottom: 31em;
     left: 31.5em;
     
    
 }
-
+#edit-song-btn {
+    vertical-align: top;
+    background-color: white;
+    width: 15em;
+    position: absolute;
+    bottom: 26em;
+    left: 31.5em;
+}
 h1 {
     max-width: 10em;
     margin-top: 1em;
@@ -63,4 +70,5 @@ textarea {
     height: 3em;
     color: gray;
 }
+
  
