@@ -1,6 +1,7 @@
+const { singleMulterUpload } =require("../../awsS3");
+const { singlePublicFileUpload }= require("../../awsS3");
 const express = require("express");
 const router = express.Router();
-
 const {
   Song,
   Album,
@@ -85,16 +86,17 @@ router.get("/:songId", async (req, res, next) => {
 
 
 //create a song 
-router.post("/", async (req, res, next) => {
+router.post("/", singleMulterUpload('tune'), async (req, res, next) => {
   
-  const { title, description, url, imageUrl, albumId } = req.body;
+  const tune = await singlePublicFileUpload(req.file)
+  const { title, description, imageUrl, albumId } = req.body;
  
   if (albumId === null) {
     const newSong = await Song.create({
       userId: req.user.dataValues.id,
       title,
       description,
-      url,
+      tune,
       imageUrl,
       albumId,
     });
@@ -108,11 +110,12 @@ router.post("/", async (req, res, next) => {
       userId: req.user.dataValues.id,
       title,
       description,
-      url,
+      tune,
       imageUrl,
       albumId,
     });
     res.json(newSong);
+    console.log('NEW SONG THUNK', newSong)
   } else {
   //  albumCheck = await Album.findOne({
   //     where: { id: albumId },
