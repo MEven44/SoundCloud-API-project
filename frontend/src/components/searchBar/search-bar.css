@@ -1,0 +1,6 @@
+.data-results {
+    height: 10em;
+    width: 20em;
+    background-color: white;
+    z-index: 5;
+}

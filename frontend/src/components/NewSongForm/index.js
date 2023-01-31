@@ -10,7 +10,7 @@ import './NewSong.css';
 const SongInput = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [url,setUrl] = useState ('')
+  const [file,setFile] = useState (null)
   const [imageUrl, setImageUrl] = useState("");
   const [albumId,setAlbumId] = useState(null)
   const [error,setError] = useState([])
@@ -25,10 +25,10 @@ const SongInput = () => {
   useEffect(()=>{
     let errors =[]
     if (!title) errors.push("Give your song a title")
-    if (!url || !url.includes('.mp3')) errors.push("your song must have a valid url")
+    
     setError(errors)
     
-  },[url,title,albumId])
+  },[file,title,albumId])
 
 const history = useHistory();
 const albums = useSelector(state=>state.albums.Albums)
@@ -39,30 +39,34 @@ const albums = useSelector(state=>state.albums.Albums)
     const newSong = {
       title,
       description,
-      url,
+      file,
       imageUrl,
       albumId:+albumId
       
     };
+    
     if (title.length === 0) {
       alert('you should give a title')
-      return}
-    
-    if (url.length === 0 && !url.includes('.mp3')) {
-      alert('your url is not valid')
-      return 
+      return
     }
+    
+   
+    
     const tune = await dispatch(createSongThunk(newSong));
-    if (tune) 
-    history.push(`/songs/${tune.id}`)
+    if (tune) history.push(`/songs/${tune.id}`)
   };
 
   const reset = () => {
     setTitle("");
     setDescription('');
-    setUrl('')
+    setFile(null)
     setImageUrl("");
     setAlbumId("");
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setFile(file);
   };
 
   return (
@@ -87,11 +91,11 @@ const albums = useSelector(state=>state.albums.Albums)
           required
         />
         <input
-          type="text"
-          onChange={(e) => setUrl(e.target.value)}
-          value={url}
-          placeholder="Please provide a song url"
-          name="url"
+          type="file"
+          onChange={updateFile}
+          // value={url}
+          // placeholder="Please provide a song url"
+          // name="url"
           required
         />
         <input

@@ -11,7 +11,9 @@ const isProduction = environment === "production";
 const app = express();
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit:'10Mb' }));
+app.use(express.json({limit:'10Mb'}));
+
 const { ValidationError } = require("sequelize");
 // Security Middleware
 if (!isProduction) {

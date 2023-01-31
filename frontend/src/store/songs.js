@@ -53,10 +53,19 @@ export const fetchSongs = () => async (dispatch) => {
 export const createSongThunk = (payload) => async (dispatch) => {
   
   if (!payload.albumId) payload.albumId = null;
-  const response = await csrfFetch("/api/songs", {
+  const { title, description,file, imageUrl, albumId } = payload
+  const formData = new FormData();
+  formData.append('title', title)
+  formData.append("description", description);
+  formData.append("imageUrl", imageUrl);
+  formData.append("albumId", albumId);
+
+  if (file) formData.append("tune", file)
+
+    const response = await csrfFetch("/api/songs", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    // headers: {},
+    body: formData,
   });
 
   if (response.ok) {

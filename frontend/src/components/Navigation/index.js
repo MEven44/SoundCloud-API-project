@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./profileButton";
 import "./Navigation.css";
 import DemoUser from "./DemoUserButton";
+import SearchBar from "../searchBar/SearchBar";
 import MyLinks from "./myLinks";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("NAVIGATION BAR SESSION USER", sessionUser)
+  const songs = useSelector(state => state.songs)
+  console.log('FROM THE NAVIGATION BAR SONGS=DATA', songs)
   let sessionLinks;
   
 
@@ -37,6 +39,7 @@ function Navigation({ isLoaded }) {
         <NavLink id="navBar" to="/albums/new-album">
           New album
         </NavLink>
+        
        
         <ProfileButton id="profile-btn" user={sessionUser} />
       </>
@@ -61,8 +64,11 @@ function Navigation({ isLoaded }) {
           Sign Up
         </NavLink>
 
-        <DemoUser></DemoUser>
+        <div>
+          <SearchBar placeholder="Enter a song name..." data={songs}/>
+        </div>
 
+        <DemoUser></DemoUser>
       </>
     );
   }
